@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+
+    <title>CCC QUEST</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <!-- App -->
+    <main class="app">
+
+        <!-- Header -->
+        <header class="top-bar">
+
+            <div class="brand">
+                <div class="brand-icon">⚡</div>
+
+                <div>
+                    <h1>CCC QUEST</h1>
+                    <p>Master Computer Concepts</p>
+                </div>
+            </div>
+
+            <button class="icon-button" id="settingsButton" aria-label="Settings">
+                ⚙️
+            </button>
+
+        </header>
+
+
+        <!-- Player Card -->
+        <section class="player-card">
+
+            <div class="player-info">
+
+                <div class="avatar">
+                    V
+                </div>
+
+                <div>
+                    <p class="small-label">CURRENT LEVEL</p>
+                    <h2>Level 1</h2>
+                </div>
+
+            </div>
+
+
+            <div class="xp-section">
+
+                <div class="xp-text">
+                    <span>XP</span>
+                    <strong id="xpValue">0 / 1000</strong>
+                </div>
+
+                <div class="xp-bar">
+                    <div class="xp-progress" id="xpProgress"></div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Main Actions -->
+        <section class="main-actions">
+
+            <button class="main-button play-button" id="playQuizButton">
+
+                <div class="button-icon">⚡</div>
+
+                <div class="button-content">
+                    <h2>Play Quiz</h2>
+                    <p>Test your computer knowledge</p>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+
+            <button class="main-button mock-button" id="mockExamButton">
+
+                <div class="button-icon">🎯</div>
+
+                <div class="button-content">
+                    <h2>Mock Exam</h2>
+                    <p>Challenge yourself like a real exam</p>
+                </div>
+
+                <span class="arrow">›</span>
+
+            </button>
+
+        </section>
+
+
+        <!-- Menu Grid -->
+        <section class="menu-grid">
+
+            <button class="menu-card" id="chaptersButton">
+
+                <div class="menu-icon">📚</div>
+
+                <h3>Chapters</h3>
+                <p>Explore syllabus</p>
+
+            </button>
+
+
+            <button class="menu-card" id="progressButton">
+
+                <div class="menu-icon">📊</div>
+
+                <h3>My Progress</h3>
+                <p>Track your performance</p>
+
+            </button>
+
+
+            <button class="menu-card" id="achievementsButton">
+
+                <div class="menu-icon">🏆</div>
+
+                <h3>Achievements</h3>
+                <p>Unlock rewards</p>
+
+            </button>
+
+
+            <button class="menu-card" id="wrongQuestionsButton">
+
+                <div class="menu-icon">❌</div>
+
+                <h3>Wrong Questions</h3>
+                <p>Review your mistakes</p>
+
+            </button>
+
+        </section>
+
+
+        <!-- Daily Challenge -->
+        <section class="daily-card">
+
+            <div class="daily-left">
+
+                <div class="daily-icon">🔥</div>
+
+                <div>
+                    <p class="small-label">DAILY CHALLENGE</p>
+                    <h2>10 Questions</h2>
+                    <p>Keep your learning streak alive</p>
+                </div>
+
+            </div>
+
+            <button id="dailyChallengeButton">
+                Start
+            </button>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <p>CCC QUEST</p>
+            <span>Personal Computer Learning Game</span>
+        </footer>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+</html>
