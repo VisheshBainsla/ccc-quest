@@ -6,23 +6,47 @@
 
 :root {
     --bg: #070a12;
-    --card: rgba(18, 23, 36, 0.78);
-    --card-border: rgba(255, 255, 255, 0.08);
+    --card: rgba(18, 23, 36, 0.82);
+    --card-light: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.08);
+
     --text: #ffffff;
     --muted: #8d96a8;
-    --accent: #7c5cff;
-    --accent-2: #00d4ff;
-    --success: #20e68a;
+
+    --purple: #7c5cff;
+    --blue: #00d4ff;
+
+    --green: #20e68a;
+    --red: #ff5577;
+    --yellow: #ffc857;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     min-height: 100vh;
     background:
-        radial-gradient(circle at 20% 10%, rgba(124, 92, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.12), transparent 30%),
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(124, 92, 255, 0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 90% 35%,
+            rgba(0, 212, 255, 0.12),
+            transparent 30%
+        ),
         var(--bg);
+
     color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x: hidden;
 }
 
@@ -31,125 +55,212 @@ button {
     color: inherit;
     border: none;
     cursor: pointer;
+
     -webkit-tap-highlight-color: transparent;
 }
 
+button:focus {
+    outline: none;
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
 .background-glow {
     position: fixed;
+
     width: 240px;
     height: 240px;
+
     border-radius: 50%;
+
     filter: blur(90px);
+
     pointer-events: none;
+
     z-index: -1;
 }
 
 .glow-one {
-    top: 10%;
-    left: -100px;
-    background: rgba(124, 92, 255, 0.16);
+    top: 5%;
+    left: -110px;
+
+    background: rgba(124, 92, 255, 0.18);
 }
 
 .glow-two {
-    right: -100px;
-    bottom: 10%;
-    background: rgba(0, 212, 255, 0.12);
+    right: -110px;
+    bottom: 8%;
+
+    background: rgba(0, 212, 255, 0.13);
 }
+
+
+/* =========================================
+   HOME APP
+========================================= */
 
 .app {
     width: min(100%, 760px);
+
     margin: auto;
-    padding: 22px 18px 35px;
+
+    padding:
+        22px
+        18px
+        40px;
 }
 
-/* Header */
+
+/* =========================================
+   HEADER
+========================================= */
 
 .top-bar {
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 24px;
 }
 
 .brand {
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 }
 
 .brand-icon {
     width: 46px;
     height: 46px;
+
     display: grid;
+
     place-items: center;
+
     border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    box-shadow: 0 10px 30px rgba(124, 92, 255, 0.25);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(124, 92, 255, 0.25);
+
     font-size: 22px;
 }
 
 .brand h1 {
     font-size: 20px;
+
     letter-spacing: 1.5px;
 }
 
 .brand p {
     color: var(--muted);
+
     font-size: 11px;
+
     margin-top: 3px;
 }
 
 .icon-button {
     width: 42px;
     height: 42px;
+
     border-radius: 13px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--card-border);
-    transition: 0.2s;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid var(--border);
+
+    transition:
+        transform 0.2s ease;
 }
 
 .icon-button:active {
     transform: scale(0.92);
 }
 
-/* Player Card */
+
+/* =========================================
+   PLAYER CARD
+========================================= */
 
 .player-card {
     background: var(--card);
-    border: 1px solid var(--card-border);
+
+    border:
+        1px solid var(--border);
+
     border-radius: 22px;
+
     padding: 18px;
+
     backdrop-filter: blur(18px);
-    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+
+    box-shadow:
+        0 18px 45px
+        rgba(0, 0, 0, 0.25);
+
     margin-bottom: 18px;
 }
 
 .player-info {
     display: flex;
+
     align-items: center;
+
     gap: 13px;
 }
 
 .avatar {
     width: 48px;
     height: 48px;
+
     display: grid;
+
     place-items: center;
+
     border-radius: 15px;
-    background: linear-gradient(135deg, #7c5cff, #4935b8);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #4935b8
+        );
+
     font-size: 19px;
+
     font-weight: bold;
 }
 
 .small-label {
     color: var(--muted);
+
     font-size: 9px;
+
     letter-spacing: 1.3px;
+
     font-weight: bold;
 }
 
 .player-info h2 {
     font-size: 17px;
+
     margin-top: 3px;
 }
 
@@ -159,9 +270,13 @@ button {
 
 .xp-text {
     display: flex;
+
     justify-content: space-between;
+
     color: var(--muted);
+
     font-size: 11px;
+
     margin-bottom: 8px;
 }
 
@@ -171,13 +286,907 @@ button {
 
 .xp-bar {
     width: 100%;
+
     height: 7px;
-    background: rgba(255, 255, 255, 0.07);
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
 .xp-progress {
     width: 0%;
+
     height: 100%;
-    background: linear
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    border-radius: inherit;
+
+    transition:
+        width 0.5s ease;
+}
+
+
+/* =========================================
+   HOME MAIN BUTTONS
+========================================= */
+
+.main-actions {
+    display: grid;
+
+    gap: 13px;
+}
+
+.main-button {
+    width: 100%;
+
+    min-height: 92px;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    padding: 18px;
+
+    border-radius: 22px;
+
+    border:
+        1px solid var(--border);
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.main-button:active {
+    transform: scale(0.975);
+}
+
+.play-button {
+    background:
+        linear-gradient(
+            120deg,
+            rgba(124, 92, 255, 0.35),
+            rgba(38, 31, 76, 0.82)
+        );
+}
+
+.mock-button {
+    background:
+        linear-gradient(
+            120deg,
+            rgba(0, 212, 255, 0.20),
+            rgba(18, 39, 52, 0.82)
+        );
+}
+
+.button-icon {
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+
+    place-items: center;
+
+    flex-shrink: 0;
+
+    border-radius: 17px;
+
+    background:
+        rgba(255, 255, 255, 0.09);
+
+    font-size: 24px;
+}
+
+.button-content {
+    margin-left: 14px;
+}
+
+.button-content h2 {
+    font-size: 17px;
+}
+
+.button-content p {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 5px;
+}
+
+.arrow {
+    margin-left: auto;
+
+    color: #bfc7d8;
+
+    font-size: 29px;
+
+    font-weight: 300;
+}
+
+
+/* =========================================
+   HOME MENU
+========================================= */
+
+.menu-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.menu-card {
+    min-height: 125px;
+
+    padding: 16px;
+
+    text-align: left;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 20px;
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.2s ease;
+}
+
+.menu-card:active {
+    transform: scale(0.96);
+}
+
+.menu-icon {
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    font-size: 18px;
+
+    margin-bottom: 13px;
+}
+
+.menu-card h3 {
+    font-size: 13px;
+}
+
+.menu-card p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   DAILY CHALLENGE
+========================================= */
+
+.daily-card {
+    margin-top: 18px;
+
+    padding: 17px;
+
+    border-radius: 21px;
+
+    border:
+        1px solid
+        rgba(32, 230, 138, 0.15);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(32, 230, 138, 0.11),
+            rgba(18, 23, 36, 0.8)
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.daily-left {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.daily-icon {
+    width: 45px;
+    height: 45px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        rgba(32, 230, 138, 0.1);
+
+    font-size: 22px;
+}
+
+.daily-card h2 {
+    font-size: 15px;
+
+    margin-top: 3px;
+}
+
+.daily-card p:not(.small-label) {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 4px;
+}
+
+.daily-card button {
+    padding:
+        10px
+        15px;
+
+    border-radius: 12px;
+
+    background:
+        var(--green);
+
+    color: #06140e;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    transition:
+        transform 0.2s;
+}
+
+.daily-card button:active {
+    transform: scale(0.93);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    text-align: center;
+
+    margin-top: 28px;
+}
+
+footer p {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #aab2c3;
+}
+
+footer span {
+    display: block;
+
+    color: #555e70;
+
+    font-size: 9px;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================
+   QUIZ SCREEN
+========================================= */
+
+.quiz-screen {
+    width: min(100%, 760px);
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding:
+        18px
+        16px
+        35px;
+}
+
+
+/* Quiz Header */
+
+.quiz-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+}
+
+.quiz-back-button {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid var(--border);
+
+    font-size: 22px;
+}
+
+.quiz-title {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.quiz-title span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 1.4px;
+}
+
+.quiz-title strong {
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.quiz-counter {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+.quiz-counter span:first-child {
+    color: var(--text);
+
+    font-weight: bold;
+}
+
+
+/* Quiz Progress */
+
+.quiz-progress-container {
+    width: 100%;
+
+    height: 6px;
+
+    background:
+        rgba(255, 255, 255, 0.07);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    margin-bottom: 18px;
+}
+
+.quiz-progress {
+    width: 10%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple),
+            var(--blue)
+        );
+
+    border-radius: inherit;
+
+    transition:
+        width 0.35s ease;
+}
+
+
+/* Quiz Stats */
+
+.quiz-stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+}
+
+.stat-box {
+    min-height: 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    color: #dce2ee;
+
+    font-size: 13px;
+}
+
+.stat-box span {
+    font-size: 14px;
+}
+
+.stat-box strong {
+    font-size: 12px;
+}
+
+.timer-box {
+    color: var(--yellow);
+}
+
+
+/* =========================================
+   QUESTION CARD
+========================================= */
+
+.question-card {
+    position: relative;
+
+    padding: 24px 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(124, 92, 255, 0.13),
+            rgba(18, 23, 36, 0.88)
+        );
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 18px 50px
+        rgba(0, 0, 0, 0.24);
+
+    margin-bottom: 16px;
+}
+
+.question-label {
+    display: inline-block;
+
+    padding:
+        5px
+        9px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(124, 92, 255, 0.14);
+
+    color:
+        #b9adff;
+
+    font-size: 8px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.4px;
+
+    margin-bottom: 14px;
+}
+
+.question-card h2 {
+    font-size: 21px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+}
+
+.question-hindi {
+    color: #aeb6c6;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   OPTIONS
+========================================= */
+
+.options-container {
+    display: grid;
+
+    gap: 10px;
+}
+
+.option-button {
+    width: 100%;
+
+    min-height: 62px;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 12px;
+
+    padding:
+        10px
+        13px;
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 17px;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.option-button:active {
+    transform: scale(0.98);
+}
+
+.option-letter {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 11px;
+
+    background:
+        rgba(124, 92, 255, 0.12);
+
+    color:
+        #c2b9ff;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.option-text {
+    color: #e8ebf2;
+
+    font-size: 13px;
+
+    line-height: 1.35;
+}
+
+
+/* Selected */
+
+.option-button.selected {
+    border-color:
+        rgba(124, 92, 255, 0.7);
+
+    background:
+        rgba(124, 92, 255, 0.13);
+}
+
+
+/* Correct */
+
+.option-button.correct {
+    border-color:
+        rgba(32, 230, 138, 0.65);
+
+    background:
+        rgba(32, 230, 138, 0.10);
+}
+
+.option-button.correct .option-letter {
+    background:
+        rgba(32, 230, 138, 0.16);
+
+    color:
+        var(--green);
+}
+
+
+/* Wrong */
+
+.option-button.wrong {
+    border-color:
+        rgba(255, 85, 119, 0.65);
+
+    background:
+        rgba(255, 85, 119, 0.10);
+}
+
+.option-button.wrong .option-letter {
+    background:
+        rgba(255, 85, 119, 0.15);
+
+    color:
+        var(--red);
+}
+
+
+/* =========================================
+   ANSWER CARD
+========================================= */
+
+.answer-card {
+    margin-top: 14px;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255, 255, 255, 0.045);
+
+    animation:
+        answerAppear 0.25s ease;
+}
+
+.answer-status {
+    font-size: 13px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+}
+
+.answer-card p {
+    color: #aeb6c6;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   NEXT BUTTON
+========================================= */
+
+.next-button {
+    width: 100%;
+
+    min-height: 55px;
+
+    margin-top: 14px;
+
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            #5c43e8
+        );
+
+    box-shadow:
+        0 12px 30px
+        rgba(124, 92, 255, 0.20);
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.next-button span {
+    margin-left: 8px;
+
+    font-size: 17px;
+}
+
+.next-button:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   QUIZ TIP
+========================================= */
+
+.quiz-tip {
+    text-align: center;
+
+    color: #596274;
+
+    font-size: 9px;
+
+    margin-top: 18px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes answerAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (min-width: 600px) {
+
+    .app {
+        padding-top: 35px;
+    }
+
+    .main-actions {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .menu-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    .menu-card {
+        min-height: 140px;
+    }
+
+    .quiz-screen {
+        padding-top: 35px;
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .app {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .brand h1 {
+        font-size: 18px;
+    }
+
+    .main-button {
+        min-height: 84px;
+
+        padding: 14px;
+    }
+
+    .button-icon {
+        width: 46px;
+        height: 46px;
+    }
+
+    .question-card h2 {
+        font-size: 19px;
+    }
+
+    .question-hindi {
+        font-size: 15px;
+    }
+
+    .stat-box {
+        min-height: 44px;
+    }
+
+    .stat-box span {
+        font-size: 12px;
+    }
+
+    .stat-box strong {
+        font-size: 11px;
+    }
+
+    .daily-card {
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    .daily-card button {
+        margin-top: 3px;
+    }
+}
