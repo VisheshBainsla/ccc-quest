@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080b14">
+    <meta name="theme-color" content="#070a12">
 
     <title>CCC QUEST</title>
 
@@ -12,26 +12,28 @@
 
 <body>
 
-    <!-- Background -->
     <div class="background-glow glow-one"></div>
     <div class="background-glow glow-two"></div>
 
-    <!-- App -->
-    <main class="app">
 
-        <!-- Header -->
+    <!-- ================= HOME SCREEN ================= -->
+
+    <main class="app" id="homeScreen">
+
         <header class="top-bar">
 
             <div class="brand">
+
                 <div class="brand-icon">⚡</div>
 
                 <div>
                     <h1>CCC QUEST</h1>
                     <p>Master Computer Concepts</p>
                 </div>
+
             </div>
 
-            <button class="icon-button" id="settingsButton" aria-label="Settings">
+            <button class="icon-button" id="settingsButton">
                 ⚙️
             </button>
 
@@ -39,6 +41,7 @@
 
 
         <!-- Player Card -->
+
         <section class="player-card">
 
             <div class="player-info">
@@ -58,12 +61,22 @@
             <div class="xp-section">
 
                 <div class="xp-text">
+
                     <span>XP</span>
-                    <strong id="xpValue">0 / 1000</strong>
+
+                    <strong id="xpValue">
+                        0 / 1000
+                    </strong>
+
                 </div>
 
                 <div class="xp-bar">
-                    <div class="xp-progress" id="xpProgress"></div>
+
+                    <div
+                        class="xp-progress"
+                        id="xpProgress">
+                    </div>
+
                 </div>
 
             </div>
@@ -72,77 +85,129 @@
 
 
         <!-- Main Actions -->
+
         <section class="main-actions">
 
-            <button class="main-button play-button" id="playQuizButton">
+            <button
+                class="main-button play-button"
+                id="playQuizButton">
 
-                <div class="button-icon">⚡</div>
-
-                <div class="button-content">
-                    <h2>Play Quiz</h2>
-                    <p>Test your computer knowledge</p>
+                <div class="button-icon">
+                    ⚡
                 </div>
 
-                <span class="arrow">›</span>
+                <div class="button-content">
+
+                    <h2>Play Quiz</h2>
+
+                    <p>
+                        Test your computer knowledge
+                    </p>
+
+                </div>
+
+                <span class="arrow">
+                    ›
+                </span>
 
             </button>
 
 
-            <button class="main-button mock-button" id="mockExamButton">
+            <button
+                class="main-button mock-button"
+                id="mockExamButton">
 
-                <div class="button-icon">🎯</div>
-
-                <div class="button-content">
-                    <h2>Mock Exam</h2>
-                    <p>Challenge yourself like a real exam</p>
+                <div class="button-icon">
+                    🎯
                 </div>
 
-                <span class="arrow">›</span>
+                <div class="button-content">
+
+                    <h2>Mock Exam</h2>
+
+                    <p>
+                        Challenge yourself like a real exam
+                    </p>
+
+                </div>
+
+                <span class="arrow">
+                    ›
+                </span>
 
             </button>
 
         </section>
 
 
-        <!-- Menu Grid -->
+        <!-- Menu -->
+
         <section class="menu-grid">
 
-            <button class="menu-card" id="chaptersButton">
+            <button
+                class="menu-card"
+                id="chaptersButton">
 
-                <div class="menu-icon">📚</div>
+                <div class="menu-icon">
+                    📚
+                </div>
 
                 <h3>Chapters</h3>
-                <p>Explore syllabus</p>
+
+                <p>
+                    Explore syllabus
+                </p>
 
             </button>
 
 
-            <button class="menu-card" id="progressButton">
+            <button
+                class="menu-card"
+                id="progressButton">
 
-                <div class="menu-icon">📊</div>
+                <div class="menu-icon">
+                    📊
+                </div>
 
                 <h3>My Progress</h3>
-                <p>Track your performance</p>
+
+                <p>
+                    Track your performance
+                </p>
 
             </button>
 
 
-            <button class="menu-card" id="achievementsButton">
+            <button
+                class="menu-card"
+                id="achievementsButton">
 
-                <div class="menu-icon">🏆</div>
+                <div class="menu-icon">
+                    🏆
+                </div>
 
                 <h3>Achievements</h3>
-                <p>Unlock rewards</p>
+
+                <p>
+                    Unlock rewards
+                </p>
 
             </button>
 
 
-            <button class="menu-card" id="wrongQuestionsButton">
+            <button
+                class="menu-card"
+                id="wrongQuestionsButton">
 
-                <div class="menu-icon">❌</div>
+                <div class="menu-icon">
+                    ❌
+                </div>
 
                 <h3>Wrong Questions</h3>
-                <p>Review your mistakes</p>
+
+                <p>
+                    Review your mistakes
+                </p>
 
             </button>
 
@@ -150,19 +215,33 @@
 
 
         <!-- Daily Challenge -->
+
         <section class="daily-card">
 
             <div class="daily-left">
 
-                <div class="daily-icon">🔥</div>
+                <div class="daily-icon">
+                    🔥
+                </div>
 
                 <div>
-                    <p class="small-label">DAILY CHALLENGE</p>
-                    <h2>10 Questions</h2>
-                    <p>Keep your learning streak alive</p>
+
+                    <p class="small-label">
+                        DAILY CHALLENGE
+                    </p>
+
+                    <h2>
+                        10 Questions
+                    </h2>
+
+                    <p>
+                        Keep your learning streak alive
+                    </p>
+
                 </div>
 
             </div>
+
 
             <button id="dailyChallengeButton">
                 Start
@@ -171,16 +250,287 @@
         </section>
 
 
-        <!-- Footer -->
         <footer>
-            <p>CCC QUEST</p>
-            <span>Personal Computer Learning Game</span>
+
+            <p>
+                CCC QUEST
+            </p>
+
+            <span>
+                Personal Computer Learning Game
+            </span>
+
         </footer>
 
     </main>
 
 
+
+    <!-- ================= QUIZ SCREEN ================= -->
+
+    <main
+        class="quiz-screen"
+        id="quizScreen"
+        style="display: none;">
+
+        <!-- Quiz Header -->
+
+        <header class="quiz-header">
+
+            <button
+                class="quiz-back-button"
+                id="quitQuizButton">
+
+                ←
+
+            </button>
+
+
+            <div class="quiz-title">
+
+                <span>
+                    CCC QUEST
+                </span>
+
+                <strong>
+                    COMPUTER FUNDAMENTALS
+                </strong>
+
+            </div>
+
+
+            <div class="quiz-counter">
+
+                <span id="questionNumber">
+                    1
+                </span>
+
+                /
+
+                <span id="totalQuestions">
+                    10
+                </span>
+
+            </div>
+
+        </header>
+
+
+        <!-- Progress -->
+
+        <div class="quiz-progress-container">
+
+            <div
+                class="quiz-progress"
+                id="quizProgress">
+            </div>
+
+        </div>
+
+
+        <!-- Game Stats -->
+
+        <section class="quiz-stats">
+
+            <div class="stat-box">
+
+                <span>
+                    ❤️
+                </span>
+
+                <strong id="lives">
+                    3
+                </strong>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span>
+                    🔥
+                </span>
+
+                <strong id="streak">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span>
+                    ⭐
+                </span>
+
+                <strong id="quizXP">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="stat-box timer-box">
+
+                <span>
+                    ⏱️
+                </span>
+
+                <strong id="timer">
+                    30
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- Question -->
+
+        <section class="question-card">
+
+            <div class="question-label">
+                QUESTION
+            </div>
+
+
+            <h2 id="questionEnglish">
+                What is Computer?
+            </h2>
+
+
+            <p
+                class="question-hindi"
+                id="questionHindi">
+
+                कंप्यूटर क्या है?
+
+            </p>
+
+        </section>
+
+
+        <!-- Options -->
+
+        <section
+            class="options-container"
+            id="optionsContainer">
+
+            <button
+                class="option-button"
+                data-option="0">
+
+                <span class="option-letter">
+                    A
+                </span>
+
+                <span class="option-text">
+                    An electronic device
+                </span>
+
+            </button>
+
+
+            <button
+                class="option-button"
+                data-option="1">
+
+                <span class="option-letter">
+                    B
+                </span>
+
+                <span class="option-text">
+                    A type of network
+                </span>
+
+            </button>
+
+
+            <button
+                class="option-button"
+                data-option="2">
+
+                <span class="option-letter">
+                    C
+                </span>
+
+                <span class="option-text">
+                    A communication cable
+                </span>
+
+            </button>
+
+
+            <button
+                class="option-button"
+                data-option="3">
+
+                <span class="option-letter">
+                    D
+                </span>
+
+                <span class="option-text">
+                    A type of software
+                </span>
+
+            </button>
+
+        </section>
+
+
+        <!-- Answer Explanation -->
+
+        <section
+            class="answer-card"
+            id="answerCard"
+            style="display: none;">
+
+            <div
+                class="answer-status"
+                id="answerStatus">
+
+                ✅ Correct Answer
+
+            </div>
+
+
+            <p id="answerExplanation">
+
+                Explanation will appear here.
+
+            </p>
+
+        </section>
+
+
+        <!-- Next Button -->
+
+        <button
+            class="next-button"
+            id="nextQuestionButton"
+            style="display: none;">
+
+            Next Question
+            <span>→</span>
+
+        </button>
+
+
+        <!-- Quiz Bottom -->
+
+        <div class="quiz-tip">
+
+            💡 Choose the best answer
+
+        </div>
+
+    </main>
+
+
+
     <!-- JavaScript -->
+
     <script src="app.js"></script>
 
 </body>
