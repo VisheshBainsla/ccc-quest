@@ -219,6 +219,26 @@ function prepareQuestion(q){
   };
 }
 
+function shuffle(array){
+  const a=[...array];
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function toQ(raw){
+  return {
+    english:raw[0],
+    hindi:raw[1],
+    options:[...raw[2]],
+    correct:raw[3],
+    chapter:raw[4],
+    explanation:raw[5]
+  };
+}
+
 function save(){localStorage.setItem("cccQuestState",JSON.stringify(state))}
 function el(id){return document.getElementById(id)}
 function hideAll(){["home","chapters","quiz","progress","achievements","wrong"].forEach(x=>el(x).classList.add("hidden"))}
