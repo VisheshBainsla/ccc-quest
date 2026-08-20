@@ -262,14 +262,356 @@
 
         </footer>
 
-    </main>
-
-
-
-    <!-- ================= QUIZ SCREEN ================= -->
+        <!-- ================= CHAPTERS SCREEN ================= -->
 
     <main
-        class="quiz-screen"
+        class="chapters-screen"
+        id="chaptersScreen"
+        style="display: none;">
+
+        <!-- Chapters Header -->
+
+        <header class="chapters-header">
+
+            <button
+                class="chapters-back-button"
+                id="backToHomeButton">
+
+                ←
+
+            </button>
+
+            <div>
+
+                <span class="chapters-small-title">
+                    CCC QUEST
+                </span>
+
+                <h1>
+                    Chapters
+                </h1>
+
+            </div>
+
+        </header>
+
+
+        <!-- Chapters Intro -->
+
+        <section class="chapters-intro">
+
+            <div class="chapters-intro-icon">
+                📚
+            </div>
+
+            <div>
+
+                <h2>
+                    CCC Course
+                </h2>
+
+                <p>
+                    Choose a chapter and start learning
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Chapter List -->
+
+        <section
+            class="chapter-list"
+            id="chapterList">
+
+
+            <!-- Chapter 1 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="1">
+
+                <div class="chapter-number">
+                    01
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Introduction to Computer
+                    </h3>
+
+                    <p>
+                        Computer fundamentals and IT gadgets
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 1</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 2 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="2">
+
+                <div class="chapter-number">
+                    02
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Introduction to Operating System
+                    </h3>
+
+                    <p>
+                        Operating systems and their basics
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 2</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 3 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="3">
+
+                <div class="chapter-number">
+                    03
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Word Processing
+                    </h3>
+
+                    <p>
+                        LibreOffice Writer
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 3</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 4 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="4">
+
+                <div class="chapter-number">
+                    04
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Spreadsheet
+                    </h3>
+
+                    <p>
+                        LibreOffice Calc
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 4</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 5 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="5">
+
+                <div class="chapter-number">
+                    05
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Presentation
+                    </h3>
+
+                    <p>
+                        LibreOffice Impress
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 5</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 6 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="6">
+
+                <div class="chapter-number">
+                    06
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Introduction to Internet and WWW
+                    </h3>
+
+                    <p>
+                        Internet and World Wide Web
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 6</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 7 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="7">
+
+                <div class="chapter-number">
+                    07
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        E-mail, Social Networking and E-Governance Services
+                    </h3>
+
+                    <p>
+                        Communication and e-governance services
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 7</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 8 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="8">
+
+                <div class="chapter-number">
+                    08
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        Digital Financial Tools and Applications
+                    </h3>
+
+                    <p>
+                        Digital payments and financial tools
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 8</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+            <!-- Chapter 9 -->
+
+            <button
+                class="chapter-card"
+                data-chapter="9">
+
+                <div class="chapter-number">
+                    09
+                </div>
+
+                <div class="chapter-content">
+
+                    <h3>
+                        FutureSkills and Cyber Security
+                    </h3>
+
+                    <p>
+                        FutureSkills, technology and cyber security
+                    </p>
+
+                    <div class="chapter-meta">
+                        <span>📖 Chapter 9</span>
+                        <span>›</span>
+                    </div>
+
+                </div>
+
+            </button>
+
+
+        </section>
+
+
+        <footer class="chapters-footer">
+
+            <p>
+                CCC QUEST
+            </p>
+
+            <span>
+                Personal Computer Learning Game
+            </span>
+
+        </footer>
+
+    </main>
         id="quizScreen"
         style="display: none;">
 
