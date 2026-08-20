@@ -2,6 +2,7 @@
 // CCC QUEST - QUIZ ENGINE
 // ==========================================
 
+
 // ---------- Demo Question Bank ----------
 
 const questionBank = [
@@ -91,16 +92,34 @@ let timerInterval = null;
 
 // ---------- Player Data ----------
 
-let playerData = JSON.parse(
-    localStorage.getItem("cccQuestPlayer")
-) || {
-    xp: 0,
-    level: 1,
-    questionsAttempted: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-    bestStreak: 0
-};
+let playerData;
+
+try {
+
+    playerData =
+        JSON.parse(
+            localStorage.getItem("cccQuestPlayer")
+        ) || {
+            xp: 0,
+            level: 1,
+            questionsAttempted: 0,
+            correctAnswers: 0,
+            wrongAnswers: 0,
+            bestStreak: 0
+        };
+
+} catch (error) {
+
+    playerData = {
+        xp: 0,
+        level: 1,
+        questionsAttempted: 0,
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        bestStreak: 0
+    };
+
+}
 
 
 // ---------- Elements ----------
@@ -114,6 +133,9 @@ const quizScreen =
 const chaptersScreen =
     document.getElementById("chaptersScreen");
 
+const playQuizButton =
+    document.getElementById("playQuizButton");
+
 const chaptersButton =
     document.getElementById("chaptersButton");
 
@@ -122,9 +144,6 @@ const backToHomeButton =
 
 const chapterCards =
     document.querySelectorAll(".chapter-card");
-
-const playQuizButton =
-    document.getElementById("playQuizButton");
 
 const quitQuizButton =
     document.getElementById("quitQuizButton");
@@ -184,7 +203,7 @@ function savePlayerData() {
 }
 
 
-// ---------- Update Home XP ----------
+// ---------- Update Home UI ----------
 
 function updatePlayerUI() {
 
@@ -197,7 +216,9 @@ function updatePlayerUI() {
     const levelElement =
         document.querySelector(".player-info h2");
 
-    if (!xpValue || !xpProgress) return;
+    if (!xpValue || !xpProgress) {
+        return;
+    }
 
     const level =
         Math.floor(playerData.xp / 1000) + 1;
@@ -205,7 +226,8 @@ function updatePlayerUI() {
     const currentLevelXP =
         playerData.xp % 1000;
 
-    playerData.level = level;
+    playerData.level =
+        level;
 
     xpValue.textContent =
         `${currentLevelXP} / 1000`;
@@ -214,9 +236,39 @@ function updatePlayerUI() {
         `${currentLevelXP / 10}%`;
 
     if (levelElement) {
+
         levelElement.textContent =
             `Level ${level}`;
+
     }
+
+}
+
+
+// ---------- Show Home ----------
+
+function showHome() {
+
+    clearInterval(timerInterval);
+
+    if (chaptersScreen) {
+        chaptersScreen.style.display =
+            "none";
+    }
+
+    if (quizScreen) {
+        quizScreen.style.display =
+            "none";
+    }
+
+    if (homeScreen) {
+        homeScreen.style.display =
+            "block";
+    }
+
+    updatePlayerUI();
+
+    window.scrollTo(0, 0);
 
 }
 
@@ -225,19 +277,39 @@ function updatePlayerUI() {
 
 function startQuiz() {
 
+    clearInterval(timerInterval);
+
     currentQuestion = 0;
     quizScore = 0;
     quizXP = 0;
     lives = 3;
     streak = 0;
+    questionAnswered = false;
 
-    homeScreen.style.display = "none";
-    quizScreen.style.display = "block";
+    if (homeScreen) {
+        homeScreen.style.display =
+            "none";
+    }
+
+    if (chaptersScreen) {
+        chaptersScreen.style.display =
+            "none";
+    }
+
+    if (quizScreen) {
+        quizScreen.style.display =
+            "block";
+    }
 
     totalQuestions.textContent =
         questionBank.length;
 
+    nextQuestionButton.textContent =
+        "Next Question";
+
     loadQuestion();
+
+    window.scrollTo(0, 0);
 
 }
 
@@ -272,14 +344,14 @@ function loadQuestion() {
         streak;
 
     const progress =
-        ((currentQuestion + 1) /
-        questionBank.length) * 100;
+        (
+            (currentQuestion + 1) /
+            questionBank.length
+        ) * 100;
 
     quizProgress.style.width =
         `${progress}%`;
 
-
-    // Reset answer area
 
     answerCard.style.display =
         "none";
@@ -288,9 +360,8 @@ function loadQuestion() {
         "none";
 
 
-    // Create options
-
-    optionsContainer.innerHTML = "";
+    optionsContainer.innerHTML =
+        "";
 
 
     question.options.forEach(
@@ -322,7 +393,11 @@ function loadQuestion() {
 
             button.addEventListener(
                 "click",
-                () => selectAnswer(index)
+                function () {
+
+                    selectAnswer(index);
+
+                }
             );
 
             optionsContainer.appendChild(
@@ -333,8 +408,6 @@ function loadQuestion() {
     );
 
 
-    // Start timer
-
     startTimer();
 
 }
@@ -344,44 +417,58 @@ function loadQuestion() {
 
 function startTimer() {
 
+    clearInterval(timerInterval);
+
     timerValue = 30;
 
     timerElement.textContent =
         timerValue;
 
     timerInterval =
-        setInterval(() => {
+        setInterval(
+            function () {
 
-            timerValue--;
+                timerValue--;
 
-            timerElement.textContent =
-                timerValue;
+                timerElement.textContent =
+                    timerValue;
 
-            if (timerValue <= 0) {
+                if (timerValue <= 0) {
 
-                clearInterval(timerInterval);
-
-                if (!questionAnswered) {
-
-                    handleWrongAnswer(
-                        -1,
-                        true
+                    clearInterval(
+                        timerInterval
                     );
+
+                    if (!questionAnswered) {
+
+                        questionAnswered =
+                            true;
+
+                        handleWrongAnswer(
+                            -1,
+                            true
+                        );
+
+                    }
 
                 }
 
-            }
-
-        }, 1000);
+            },
+            1000
+        );
 
 }
 
 
 // ---------- Select Answer ----------
 
-function selectAnswer(selectedIndex) {
+function selectAnswer(
+    selectedIndex
+) {
 
-    if (questionAnswered) return;
+    if (questionAnswered) {
+        return;
+    }
 
     questionAnswered = true;
 
@@ -395,15 +482,20 @@ function selectAnswer(selectedIndex) {
             ".option-button"
         );
 
+    buttons.forEach(
+        function (button) {
 
-    buttons.forEach(button => {
+            button.disabled =
+                true;
 
-        button.disabled = true;
+        }
+    );
 
-    });
 
-
-    if (selectedIndex === question.correct) {
+    if (
+        selectedIndex ===
+        question.correct
+    ) {
 
         handleCorrectAnswer(
             selectedIndex
@@ -435,18 +527,25 @@ function handleCorrectAnswer(
             ".option-button"
         );
 
-    buttons[selectedIndex]
-        .classList.add("correct");
+    if (buttons[selectedIndex]) {
+
+        buttons[selectedIndex]
+            .classList.add("correct");
+
+    }
 
     quizScore++;
 
     streak++;
 
-    const earnedXP = 100;
+    const earnedXP =
+        100;
 
-    quizXP += earnedXP;
+    quizXP +=
+        earnedXP;
 
-    playerData.xp += earnedXP;
+    playerData.xp +=
+        earnedXP;
 
     playerData.questionsAttempted++;
 
@@ -515,8 +614,6 @@ function handleWrongAnswer(
     }
 
 
-    // Highlight correct answer
-
     if (buttons[question.correct]) {
 
         buttons[question.correct]
@@ -572,8 +669,6 @@ function handleWrongAnswer(
         "block";
 
 
-    // No lives left
-
     if (lives <= 0) {
 
         nextQuestionButton.textContent =
@@ -598,7 +693,6 @@ nextQuestionButton.addEventListener(
 
         }
 
-
         currentQuestion++;
 
 
@@ -612,7 +706,6 @@ nextQuestionButton.addEventListener(
             return;
 
         }
-
 
         loadQuestion();
 
@@ -628,91 +721,71 @@ function showQuizResult() {
 
     const percentage =
         Math.round(
-            (quizScore /
-            questionBank.length) * 100
+            (
+                quizScore /
+                questionBank.length
+            ) * 100
         );
 
 
-    quizScreen.innerHTML = `
+    // Keep the original quiz HTML intact.
+    // This prevents the quiz from breaking
+    // when the user starts another quiz.
 
-        <div class="question-card"
-             style="margin-top:40px;text-align:center;">
+    answerStatus.textContent =
+        "🎉 Quiz Complete!";
 
-            <div class="question-label">
-                QUIZ COMPLETE
-            </div>
+    answerStatus.style.color =
+        "var(--green)";
 
-            <h2>
-                🎉 Great Job!
-            </h2>
-
-            <p class="question-hindi">
-                Your Quiz Results
-            </p>
-
-            <div style="
-                margin-top:25px;
-                font-size:40px;
-                font-weight:bold;
-            ">
-                ${percentage}%
-            </div>
-
-            <p style="
-                margin-top:10px;
-                color:#8d96a8;
-                font-size:13px;
-            ">
-                ${quizScore}
-                / ${questionBank.length}
-                correct
-            </p>
-
-            <div style="
-                margin-top:25px;
-                color:#ffc857;
-                font-size:15px;
-            ">
-                ⭐ ${quizXP} XP earned
-            </div>
-
-        </div>
+    answerExplanation.textContent =
+        `You scored ${quizScore} out of ` +
+        `${questionBank.length} ` +
+        `(${percentage}%). ` +
+        `You earned ${quizXP} XP.`;
 
 
-        <button
-            class="next-button"
-            id="backHomeButton">
-
-            Back to Home
-
-        </button>
-
-    `;
-
-
-    document
-        .getElementById("backHomeButton")
-        .addEventListener(
-            "click",
-            returnHome
-        );
-
-}
-
-
-// ---------- Return Home ----------
-
-function returnHome() {
-
-    clearInterval(timerInterval);
-
-    quizScreen.style.display =
-        "none";
-
-    homeScreen.style.display =
+    answerCard.style.display =
         "block";
 
-    updatePlayerUI();
+    nextQuestionButton.textContent =
+        "Back to Home";
+
+    nextQuestionButton.style.display =
+        "block";
+
+
+    // Disable all options
+
+    const buttons =
+        document.querySelectorAll(
+            ".option-button"
+        );
+
+    buttons.forEach(
+        function (button) {
+
+            button.disabled =
+                true;
+
+        }
+    );
+
+
+    // Special next button behavior
+
+    nextQuestionButton.onclick =
+        function () {
+
+            nextQuestionButton.onclick =
+                null;
+
+            nextQuestionButton.textContent =
+                "Next Question";
+
+            showHome();
+
+        };
 
 }
 
@@ -730,7 +803,7 @@ quitQuizButton.addEventListener(
 
         if (shouldQuit) {
 
-            returnHome();
+            showHome();
 
         }
 
@@ -738,7 +811,7 @@ quitQuizButton.addEventListener(
 );
 
 
-// ---------- Play Button ----------
+// ---------- Play Quiz ----------
 
 playQuizButton.addEventListener(
     "click",
@@ -746,131 +819,20 @@ playQuizButton.addEventListener(
 );
 
 
-// ---------- Other Home Buttons ----------
-
-document
-    .getElementById("mockExamButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Mock Exam mode will be added next! 🎯"
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("chaptersButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Chapter selection will be added next! 📚"
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("progressButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                `XP: ${playerData.xp}\n` +
-                `Level: ${playerData.level}\n` +
-                `Questions: ${playerData.questionsAttempted}\n` +
-                `Correct: ${playerData.correctAnswers}\n` +
-                `Wrong: ${playerData.wrongAnswers}\n` +
-                `Best Streak: ${playerData.bestStreak}`
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("achievementsButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Achievements will be added next! 🏆"
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("wrongQuestionsButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Wrong Questions review will be added next! ❌"
-            );
-
-        }
-    );
-
-
-document
-    .getElementById("dailyChallengeButton")
-    .addEventListener(
-        "click",
-        startQuiz
-    );
-
-
-document
-    .getElementById("settingsButton")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Settings will be added later. ⚙️"
-            );
-
-        }
-    );
-
-
-// ---------- Initialize ----------
-
-updatePlayerUI();
-
-savePlayerData();
-
-console.log(
-    "CCC QUEST Quiz Engine Loaded!"
-);
-
-// ==========================================
-// CHAPTERS SCREEN
-// ==========================================
-
-
-// Open Chapters
+// ---------- Chapters ----------
 
 chaptersButton.addEventListener(
     "click",
     function () {
 
-        homeScreen.style.display = "none";
+        homeScreen.style.display =
+            "none";
 
-        quizScreen.style.display = "none";
+        quizScreen.style.display =
+            "none";
 
-        chaptersScreen.style.display = "block";
+        chaptersScreen.style.display =
+            "block";
 
         window.scrollTo(0, 0);
 
@@ -878,27 +840,15 @@ chaptersButton.addEventListener(
 );
 
 
-// Back to Home
+// ---------- Back to Home ----------
 
 backToHomeButton.addEventListener(
     "click",
-    function () {
-
-        chaptersScreen.style.display = "none";
-
-        quizScreen.style.display = "none";
-
-        homeScreen.style.display = "block";
-
-        updatePlayerUI();
-
-        window.scrollTo(0, 0);
-
-    }
+    showHome
 );
 
 
-// Chapter Cards
+// ---------- Chapter Cards ----------
 
 chapterCards.forEach(
     function (card) {
@@ -918,4 +868,110 @@ chapterCards.forEach(
         );
 
     }
+);
+
+
+// ---------- Mock Exam ----------
+
+document
+    .getElementById("mockExamButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Mock Exam mode will be added next! 🎯"
+            );
+
+        }
+    );
+
+
+// ---------- Progress ----------
+
+document
+    .getElementById("progressButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            alert(
+                `XP: ${playerData.xp}\n` +
+                `Level: ${playerData.level}\n` +
+                `Questions: ${playerData.questionsAttempted}\n` +
+                `Correct: ${playerData.correctAnswers}\n` +
+                `Wrong: ${playerData.wrongAnswers}\n` +
+                `Best Streak: ${playerData.bestStreak}`
+            );
+
+        }
+    );
+
+
+// ---------- Achievements ----------
+
+document
+    .getElementById("achievementsButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Achievements will be added next! 🏆"
+            );
+
+        }
+    );
+
+
+// ---------- Wrong Questions ----------
+
+document
+    .getElementById("wrongQuestionsButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Wrong Questions review will be added next! ❌"
+            );
+
+        }
+    );
+
+
+// ---------- Daily Challenge ----------
+
+document
+    .getElementById("dailyChallengeButton")
+    .addEventListener(
+        "click",
+        startQuiz
+    );
+
+
+// ---------- Settings ----------
+
+document
+    .getElementById("settingsButton")
+    .addEventListener(
+        "click",
+        function () {
+
+            alert(
+                "Settings will be added later. ⚙️"
+            );
+
+        }
+    );
+
+
+// ---------- Initialize ----------
+
+updatePlayerUI();
+
+savePlayerData();
+
+console.log(
+    "CCC QUEST Quiz Engine Loaded Successfully!"
 );
