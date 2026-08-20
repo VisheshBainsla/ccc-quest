@@ -1190,3 +1190,349 @@ footer span {
         margin-top: 3px;
     }
 }
+/* =========================================
+   CHAPTERS SCREEN
+========================================= */
+
+.chapters-screen {
+    width: min(100%, 760px);
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding:
+        18px
+        16px
+        35px;
+}
+
+
+/* Chapters Header */
+
+.chapters-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    margin-bottom: 20px;
+}
+
+.chapters-back-button {
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 13px;
+
+    background:
+        rgba(255, 255, 255, 0.06);
+
+    border:
+        1px solid var(--border);
+
+    font-size: 22px;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.chapters-back-button:active {
+    transform: scale(0.92);
+}
+
+.chapters-small-title {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    letter-spacing: 1.5px;
+}
+
+.chapters-header h1 {
+    font-size: 23px;
+
+    margin-top: 4px;
+}
+
+
+/* Chapters Intro */
+
+.chapters-intro {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 16px;
+
+    border-radius: 21px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, 0.16),
+            rgba(0, 212, 255, 0.07)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.20);
+}
+
+.chapters-intro-icon {
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 15px;
+
+    background:
+        rgba(124, 92, 255, 0.14);
+
+    font-size: 24px;
+}
+
+.chapters-intro h2 {
+    font-size: 16px;
+}
+
+.chapters-intro p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 5px;
+}
+
+
+/* Chapter List */
+
+.chapter-list {
+    display: grid;
+
+    gap: 11px;
+}
+
+
+/* Chapter Card */
+
+.chapter-card {
+    width: 100%;
+
+    min-height: 96px;
+
+    display: flex;
+
+    align-items: center;
+
+    text-align: left;
+
+    gap: 13px;
+
+    padding: 13px;
+
+    background:
+        rgba(18, 23, 36, 0.82);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    backdrop-filter: blur(15px);
+
+    transition:
+        transform 0.18s ease,
+        border-color 0.18s ease,
+        background 0.18s ease;
+}
+
+.chapter-card:active {
+    transform: scale(0.975);
+
+    border-color:
+        rgba(124, 92, 255, 0.45);
+
+    background:
+        rgba(124, 92, 255, 0.08);
+}
+
+
+/* Chapter Number */
+
+.chapter-number {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124, 92, 255, 0.20),
+            rgba(0, 212, 255, 0.09)
+        );
+
+    border:
+        1px solid
+        rgba(124, 92, 255, 0.15);
+
+    color:
+        #bcb2ff;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* Chapter Content */
+
+.chapter-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.chapter-content h3 {
+    color: #f1f3f8;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+    font-weight: 700;
+}
+
+.chapter-content p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    margin-top: 4px;
+}
+
+
+/* Chapter Meta */
+
+.chapter-meta {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 8px;
+
+    color: #667084;
+
+    font-size: 9px;
+}
+
+.chapter-meta span:last-child {
+    color: #aeb7c9;
+
+    font-size: 18px;
+
+    line-height: 10px;
+}
+
+
+/* Chapters Footer */
+
+.chapters-footer {
+    text-align: center;
+
+    margin-top: 25px;
+}
+
+.chapters-footer p {
+    color: #8f98aa;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+}
+
+.chapters-footer span {
+    display: block;
+
+    color: #515b6d;
+
+    font-size: 8px;
+
+    margin-top: 5px;
+}
+
+
+/* Desktop */
+
+@media (min-width: 600px) {
+
+    .chapters-screen {
+        padding-top: 35px;
+    }
+
+    .chapter-list {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+}
+
+
+/* Small Phones */
+
+@media (max-width: 360px) {
+
+    .chapters-screen {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .chapter-card {
+        min-height: 90px;
+
+        padding: 11px;
+    }
+
+    .chapter-number {
+        width: 43px;
+        height: 43px;
+    }
+
+    .chapter-content h3 {
+        font-size: 12px;
+    }
+
+}
