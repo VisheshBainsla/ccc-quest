@@ -5,199 +5,2531 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070a12">
 <title>CCC QUEST</title>
+
 <style>
-:root{--bg:#070a12;--card:#111625;--card2:#151a2d;--text:#f7f8fc;--muted:#8d96a8;--purple:#6d4aff;--cyan:#16d9ff;--green:#28e27f;--red:#ff5570;--gold:#ffc857}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 10%,#20164a 0,transparent 35%),radial-gradient(circle at 90% 35%,#063b4a 0,transparent 32%),var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;min-height:100vh}.app{max-width:720px;margin:auto;padding:22px 18px 45px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.brand{display:flex;gap:13px;align-items:center}.brand-icon,.avatar{display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,#6847ff,#37228f);box-shadow:0 10px 30px #0005}.brand-icon{width:56px;height:56px;font-size:28px}.brand h1{font-size:22px;margin:0}.brand p{margin:4px 0 0;color:var(--muted);font-size:12px}.icon{border:1px solid #ffffff12;background:#111522;color:white;border-radius:15px;width:48px;height:48px;font-size:21px}.card{background:linear-gradient(145deg,#151a2b,#0f1421);border:1px solid #ffffff12;border-radius:25px;padding:22px;box-shadow:0 14px 35px #0003;margin-bottom:18px}.player{display:flex;align-items:center;gap:14px}.avatar{width:58px;height:58px;font-size:24px}.label{font-size:11px;letter-spacing:2px;color:#9aa3b7}.level{font-size:23px;margin:4px 0 0}.xp{margin-top:22px}.xptext{display:flex;justify-content:space-between;font-size:13px}.bar{height:9px;background:#242a3a;border-radius:20px;margin-top:9px;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:20px}.mainbtn{width:100%;border:0;color:white;text-align:left;padding:19px;border-radius:24px;margin:8px 0;display:flex;align-items:center;gap:15px;background:linear-gradient(135deg,#38227d,#171b36);border:1px solid #ffffff12}.mainbtn.mock{background:linear-gradient(135deg,#073f51,#10212d)}button{cursor:pointer;font:inherit}.btnicon{font-size:28px;width:50px;height:50px;display:grid;place-items:center;border-radius:17px;background:#ffffff0b}.mainbtn h2{margin:0;font-size:20px}.mainbtn p{margin:5px 0 0;color:var(--muted);font-size:13px}.arrow{margin-left:auto;font-size:30px;color:#b8bfd0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.tile{border:1px solid #ffffff12;background:#111624;color:white;text-align:left;border-radius:22px;padding:20px;min-height:150px}.tile .ti{font-size:28px;background:#1b2130;border-radius:15px;width:54px;height:54px;display:grid;place-items:center}.tile h3{margin:16px 0 5px;font-size:18px}.tile p{margin:0;color:var(--muted);font-size:13px}.daily{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,#082c2c,#10202b);border:1px solid #19c99033}.daily button,.primary{border:0;background:var(--green);color:#06130d;border-radius:16px;padding:14px 22px;font-weight:700}.footer{text-align:center;color:#6f788a;font-size:12px;padding:18px}.screen{max-width:720px;margin:auto;padding:18px;min-height:100vh}.hidden{display:none!important}.screenhead{display:flex;align-items:center;gap:12px;margin-bottom:18px}.back{width:46px;height:46px;border:1px solid #ffffff12;border-radius:15px;background:#111624;color:white;font-size:22px}.screenhead h2{margin:0;font-size:20px}.screenhead p{margin:4px 0 0;color:var(--muted);font-size:12px}.chapter{display:flex;align-items:center;gap:15px;background:#111624;border:1px solid #ffffff12;color:white;border-radius:20px;padding:17px;margin:10px 0;width:100%;text-align:left}.chapter .num{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;background:#2b225b;color:#c9bfff;font-weight:700}.chapter h3{margin:0;font-size:16px}.chapter p{margin:5px 0 0;color:var(--muted);font-size:12px}.quizhead{display:flex;align-items:center;justify-content:space-between;gap:12px}.qtitle{flex:1}.qtitle span{display:block;color:#aab1c0;font-size:11px;letter-spacing:2px}.qtitle strong{display:block;margin-top:5px;font-size:14px}.counter{font-size:14px;color:#cbd2df}.qbar{height:7px;background:#202738;border-radius:20px;overflow:hidden;margin:15px 0}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:#111624;border:1px solid #ffffff12;border-radius:18px;padding:13px;text-align:center}.stat span{display:block;font-size:18px}.stat b{display:block;margin-top:5px}.qcard{margin-top:15px;background:linear-gradient(145deg,#17152f,#12182a);border:1px solid #ffffff12;border-radius:25px;padding:24px}.qcard h2{font-size:22px;line-height:1.3;margin:15px 0 10px}.hindi{font-size:18px;color:#c7cbd7;line-height:1.5}.option{width:100%;display:flex;align-items:center;gap:12px;margin:10px 0;border:1px solid #ffffff12;background:#111624;color:white;border-radius:17px;padding:15px;text-align:left}.option:disabled{cursor:default}.letter{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#202638;font-weight:700}.option.correct{border-color:#28e27f;background:#0b2b1d}.option.correct .letter{background:#1a7a4b}.option.wrong{border-color:#ff5570;background:#321522}.option.wrong .letter{background:#8e3047}.answer{border-radius:18px;padding:16px;margin-top:14px;background:#121927;border:1px solid #ffffff12}.answer strong{display:block;margin-bottom:7px}.next{width:100%;margin-top:14px;padding:16px;border:0;border-radius:17px;background:linear-gradient(90deg,#6d4aff,#16bce8);color:white;font-weight:700}.result{text-align:center}.result .big{font-size:52px;font-weight:800;margin:18px}.statbox{display:grid;grid-template-columns:1fr 1fr;gap:10px}.smallcard{background:#111624;border:1px solid #ffffff12;border-radius:18px;padding:16px}.smallcard b{font-size:24px}.achievement{display:flex;gap:14px;align-items:center;background:#111624;border:1px solid #ffffff12;border-radius:18px;padding:15px;margin:10px 0}.achievement.locked{opacity:.45}.achievement .badge{font-size:28px}.search{width:100%;padding:14px;border-radius:15px;background:#0e1420;border:1px solid #ffffff12;color:white;outline:none;margin-bottom:10px}
-@media(max-width:430px){.app,.screen{padding-left:14px;padding-right:14px}.grid{gap:10px}.tile{padding:16px}.qcard h2{font-size:20px}.stats{gap:6px}.stat{padding:10px 5px}}
+:root{
+--bg:#070a12;
+--card:#111625;
+--card2:#151a2d;
+--text:#f7f8fc;
+--muted:#8d96a8;
+--purple:#6d4aff;
+--cyan:#16d9ff;
+--green:#28e27f;
+--red:#ff5570;
+--gold:#ffc857
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+background:
+radial-gradient(circle at 15% 10%,#20164a 0,transparent 35%),
+radial-gradient(circle at 90% 35%,#063b4a 0,transparent 32%),
+var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+min-height:100vh
+}
+
+button{cursor:pointer;font:inherit}
+
+.app,.screen{
+max-width:720px;
+margin:auto;
+padding:22px 18px 45px;
+min-height:100vh
+}
+
+.top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:22px
+}
+
+.brand{
+display:flex;
+gap:13px;
+align-items:center
+}
+
+.brand-icon,.avatar{
+display:grid;
+place-items:center;
+border-radius:18px;
+background:linear-gradient(135deg,#6847ff,#37228f);
+box-shadow:0 10px 30px #0005
+}
+
+.brand-icon{
+width:56px;
+height:56px;
+font-size:28px
+}
+
+.brand h1{
+font-size:22px;
+margin:0
+}
+
+.brand p{
+margin:4px 0 0;
+color:var(--muted);
+font-size:12px
+}
+
+.icon{
+border:1px solid #ffffff12;
+background:#111522;
+color:white;
+border-radius:15px;
+width:48px;
+height:48px;
+font-size:21px
+}
+
+.card{
+background:linear-gradient(145deg,#151a2b,#0f1421);
+border:1px solid #ffffff12;
+border-radius:25px;
+padding:22px;
+box-shadow:0 14px 35px #0003;
+margin-bottom:18px
+}
+
+.player{
+display:flex;
+align-items:center;
+gap:14px
+}
+
+.avatar{
+width:58px;
+height:58px;
+font-size:24px
+}
+
+.label{
+font-size:11px;
+letter-spacing:2px;
+color:#9aa3b7
+}
+
+.level{
+font-size:23px;
+margin:4px 0 0
+}
+
+.xp{
+margin-top:22px
+}
+
+.xptext{
+display:flex;
+justify-content:space-between;
+font-size:13px
+}
+
+.bar{
+height:9px;
+background:#242a3a;
+border-radius:20px;
+margin-top:9px;
+overflow:hidden
+}
+
+.fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--purple),var(--cyan));
+border-radius:20px
+}
+
+.mainbtn{
+width:100%;
+border:0;
+color:white;
+text-align:left;
+padding:19px;
+border-radius:24px;
+margin:8px 0;
+display:flex;
+align-items:center;
+gap:15px;
+background:linear-gradient(135deg,#38227d,#171b36);
+border:1px solid #ffffff12
+}
+
+.mainbtn.mock{
+background:linear-gradient(135deg,#073f51,#10212d)
+}
+
+.btnicon{
+font-size:28px;
+width:50px;
+height:50px;
+display:grid;
+place-items:center;
+border-radius:17px;
+background:#ffffff0b
+}
+
+.mainbtn h2{
+margin:0;
+font-size:20px
+}
+
+.mainbtn p{
+margin:5px 0 0;
+color:var(--muted);
+font-size:13px
+}
+
+.arrow{
+margin-left:auto;
+font-size:30px;
+color:#b8bfd0
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px
+}
+
+.tile{
+border:1px solid #ffffff12;
+background:#111624;
+color:white;
+text-align:left;
+border-radius:22px;
+padding:20px;
+min-height:150px
+}
+
+.tile .ti{
+font-size:28px;
+background:#1b2130;
+border-radius:15px;
+width:54px;
+height:54px;
+display:grid;
+place-items:center
+}
+
+.tile h3{
+margin:16px 0 5px;
+font-size:18px
+}
+
+.tile p{
+margin:0;
+color:var(--muted);
+font-size:13px
+}
+
+.daily{
+display:flex;
+align-items:center;
+justify-content:space-between;
+background:linear-gradient(135deg,#082c2c,#10202b);
+border:1px solid #19c99033
+}
+
+.daily button,.primary{
+border:0;
+background:var(--green);
+color:#06130d;
+border-radius:16px;
+padding:14px 22px;
+font-weight:700
+}
+
+.footer{
+text-align:center;
+color:#6f788a;
+font-size:12px;
+padding:18px
+}
+
+.hidden{
+display:none!important
+}
+
+.screenhead{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:18px
+}
+
+.back{
+width:46px;
+height:46px;
+border:1px solid #ffffff12;
+border-radius:15px;
+background:#111624;
+color:white;
+font-size:22px
+}
+
+.screenhead h2{
+margin:0;
+font-size:20px
+}
+
+.screenhead p{
+margin:4px 0 0;
+color:var(--muted);
+font-size:12px
+}
+
+.chapter{
+display:flex;
+align-items:center;
+gap:15px;
+background:#111624;
+border:1px solid #ffffff12;
+color:white;
+border-radius:20px;
+padding:17px;
+margin:10px 0;
+width:100%;
+text-align:left
+}
+
+.chapter .num{
+width:45px;
+height:45px;
+border-radius:14px;
+display:grid;
+place-items:center;
+background:#2b225b;
+color:#c9bfff;
+font-weight:700
+}
+
+.chapter h3{
+margin:0;
+font-size:16px
+}
+
+.chapter p{
+margin:5px 0 0;
+color:var(--muted);
+font-size:12px
+}
+
+.quizhead{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px
+}
+
+.qtitle{
+flex:1
+}
+
+.qtitle span{
+display:block;
+color:#aab1c0;
+font-size:11px;
+letter-spacing:2px
+}
+
+.qtitle strong{
+display:block;
+margin-top:5px;
+font-size:14px
+}
+
+.counter{
+font-size:14px;
+color:#cbd2df
+}
+
+.qbar{
+height:7px;
+background:#202738;
+border-radius:20px;
+overflow:hidden;
+margin:15px 0
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:9px
+}
+
+.stat{
+background:#111624;
+border:1px solid #ffffff12;
+border-radius:18px;
+padding:13px;
+text-align:center
+}
+
+.stat span{
+display:block;
+font-size:18px
+}
+
+.stat b{
+display:block;
+margin-top:5px
+}
+
+.qcard{
+margin-top:15px;
+background:linear-gradient(145deg,#17152f,#12182a);
+border:1px solid #ffffff12;
+border-radius:25px;
+padding:24px
+}
+
+.qcard h2{
+font-size:22px;
+line-height:1.3;
+margin:15px 0 10px
+}
+
+.hindi{
+font-size:18px;
+color:#c7cbd7;
+line-height:1.5
+}
+
+.option{
+width:100%;
+display:flex;
+align-items:center;
+gap:12px;
+margin:10px 0;
+border:1px solid #ffffff12;
+background:#111624;
+color:white;
+border-radius:17px;
+padding:15px;
+text-align:left
+}
+
+.option:disabled{
+cursor:default
+}
+
+.letter{
+width:36px;
+height:36px;
+border-radius:11px;
+display:grid;
+place-items:center;
+background:#202638;
+font-weight:700;
+flex-shrink:0
+}
+
+.option.correct{
+border-color:#28e27f;
+background:#0b2b1d
+}
+
+.option.correct .letter{
+background:#1a7a4b
+}
+
+.option.wrong{
+border-color:#ff5570;
+background:#321522
+}
+
+.option.wrong .letter{
+background:#8e3047
+}
+
+.answer{
+border-radius:18px;
+padding:16px;
+margin-top:14px;
+background:#121927;
+border:1px solid #ffffff12
+}
+
+.answer strong{
+display:block;
+margin-bottom:7px
+}
+
+.next{
+width:100%;
+margin-top:14px;
+padding:16px;
+border:0;
+border-radius:17px;
+background:linear-gradient(90deg,#6d4aff,#16bce8);
+color:white;
+font-weight:700
+}
+
+.result{
+text-align:center
+}
+
+.result .big{
+font-size:52px;
+font-weight:800;
+margin:18px
+}
+
+.statbox{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
+}
+
+.smallcard{
+background:#111624;
+border:1px solid #ffffff12;
+border-radius:18px;
+padding:16px
+}
+
+.smallcard b{
+font-size:24px
+}
+
+.achievement{
+display:flex;
+gap:14px;
+align-items:center;
+background:#111624;
+border:1px solid #ffffff12;
+border-radius:18px;
+padding:15px;
+margin:10px 0
+}
+
+.achievement.locked{
+opacity:.45
+}
+
+.achievement .badge{
+font-size:28px
+}
+
+.search{
+width:100%;
+padding:14px;
+border-radius:15px;
+background:#0e1420;
+border:1px solid #ffffff12;
+color:white;
+outline:none;
+margin-bottom:10px
+}
+
+@media(max-width:430px){
+.app,.screen{
+padding-left:14px;
+padding-right:14px
+}
+
+.grid{
+gap:10px
+}
+
+.tile{
+padding:16px
+}
+
+.qcard h2{
+font-size:20px
+}
+
+.stats{
+gap:6px
+}
+
+.stat{
+padding:10px 5px
+}
+}
 </style>
 </head>
+
 <body>
 
+<!-- ================= HOME ================= -->
+
 <div id="home" class="app">
+
 <header class="top">
-  <div class="brand"><div class="brand-icon">⚡</div><div><h1>CCC QUEST</h1><p>Master Computer Concepts</p></div></div>
-  <button class="icon" onclick="showSettings()">⚙️</button>
+
+<div class="brand">
+
+<div class="brand-icon">⚡</div>
+
+<div>
+<h1>CCC QUEST</h1>
+<p>Master Computer Concepts</p>
+</div>
+
+</div>
+
+<button class="icon" onclick="showSettings()">⚙️</button>
+
 </header>
 
+
 <section class="card">
-  <div class="player"><div class="avatar">V</div><div><div class="label">CURRENT LEVEL</div><div class="level" id="level">Level 1</div></div></div>
-  <div class="xp"><div class="xptext"><span>XP</span><b id="xpText">0 / 1000</b></div><div class="bar"><div class="fill" id="xpFill"></div></div></div>
+
+<div class="player">
+
+<div class="avatar">V</div>
+
+<div>
+<div class="label">CURRENT LEVEL</div>
+<div class="level" id="level">Level 1</div>
+</div>
+
+</div>
+
+<div class="xp">
+
+<div class="xptext">
+<span>XP</span>
+<b id="xpText">0 / 1000</b>
+</div>
+
+<div class="bar">
+<div class="fill" id="xpFill"></div>
+</div>
+
+</div>
+
 </section>
 
-<button class="mainbtn" onclick="startQuiz('all')"><div class="btnicon">⚡</div><div><h2>Play Quiz</h2><p>Questions from the complete CCC course</p></div><span class="arrow">›</span></button>
-<button class="mainbtn mock" onclick="startMock()"><div class="btnicon">🎯</div><div><h2>Mock Exam</h2><p>Practice like a real CCC-style exam</p></div><span class="arrow">›</span></button>
+
+<button class="mainbtn" onclick="startQuiz('all')">
+
+<div class="btnicon">⚡</div>
+
+<div>
+<h2>Play Quiz</h2>
+<p>Questions from the complete CCC course</p>
+</div>
+
+<span class="arrow">›</span>
+
+</button>
+
+
+<button class="mainbtn mock" onclick="startMock()">
+
+<div class="btnicon">🎯</div>
+
+<div>
+<h2>Mock Exam</h2>
+<p>Practice like a real CCC-style exam</p>
+</div>
+
+<span class="arrow">›</span>
+
+</button>
+
 
 <section class="grid">
-<button class="tile" onclick="showChapters()"><div class="ti">📚</div><h3>Chapters</h3><p>Explore the 9 book chapters</p></button>
-<button class="tile" onclick="showProgress()"><div class="ti">📊</div><h3>My Progress</h3><p>Track your performance</p></button>
-<button class="tile" onclick="showAchievements()"><div class="ti">🏆</div><h3>Achievements</h3><p>Unlock rewards</p></button>
-<button class="tile" onclick="showWrong()"><div class="ti">❌</div><h3>Wrong Questions</h3><p>Review your mistakes</p></button>
+
+<button class="tile" onclick="showChapters()">
+<div class="ti">📚</div>
+<h3>Chapters</h3>
+<p>Explore the 9 book chapters</p>
+</button>
+
+
+<button class="tile" onclick="showProgress()">
+<div class="ti">📊</div>
+<h3>My Progress</h3>
+<p>Track your performance</p>
+</button>
+
+
+<button class="tile" onclick="showAchievements()">
+<div class="ti">🏆</div>
+<h3>Achievements</h3>
+<p>Unlock rewards</p>
+</button>
+
+
+<button class="tile" onclick="showWrong()">
+<div class="ti">❌</div>
+<h3>Wrong Questions</h3>
+<p>Review your mistakes</p>
+</button>
+
 </section>
 
-<section class="card daily" style="margin-top:14px"><div><div class="label">DAILY CHALLENGE</div><h2 style="margin:5px 0">10 Questions</h2><p style="margin:0;color:var(--muted);font-size:13px">Keep your learning streak alive</p></div><button onclick="startDaily()">Start</button></section>
-<div class="footer"><b>CCC QUEST</b><br>Personal Computer Learning Game</div>
+
+<section class="card daily" style="margin-top:14px">
+
+<div>
+
+<div class="label">DAILY CHALLENGE</div>
+
+<h2 style="margin:5px 0">
+10 Questions
+</h2>
+
+<p style="margin:0;color:var(--muted);font-size:13px">
+Keep your learning streak alive
+</p>
+
 </div>
+
+<button onclick="startDaily()">Start</button>
+
+</section>
+
+
+<div class="footer">
+<b>CCC QUEST</b>
+<br>
+Personal Computer Learning Game
+</div>
+
+</div>
+
+
+<!-- ================= CHAPTERS ================= -->
 
 <div id="chapters" class="screen hidden">
-<header class="screenhead"><button class="back" onclick="showHome()">←</button><div><h2>Chapters</h2><p>Choose a chapter to practice</p></div></header>
-<div id="chapterList"></div>
+
+<header class="screenhead">
+
+<button class="back" onclick="showHome()">←</button>
+
+<div>
+<h2>Chapters</h2>
+<p>Choose a chapter to practice</p>
 </div>
+
+</header>
+
+<div id="chapterList"></div>
+
+</div>
+
+
+<!-- ================= QUIZ ================= -->
 
 <div id="quiz" class="screen hidden">
-<header class="quizhead"><button class="back" onclick="quitQuiz()">←</button><div class="qtitle"><span>CCC QUEST</span><strong id="quizTitle">COMPUTER FUNDAMENTALS</strong></div><div class="counter"><b id="qn">1</b> / <b id="qt">10</b></div></header>
-<div class="qbar"><div class="fill" id="qFill"></div></div>
-<div class="stats"><div class="stat">❤️<b id="lives">3</b></div><div class="stat">🔥<b id="streak">0</b></div><div class="stat">⭐<b id="quizXp">0</b></div><div class="stat">⏱️<b id="timer">30</b></div></div>
-<section class="qcard"><div class="label">QUESTION</div><h2 id="qEnglish"></h2><div class="hindi" id="qHindi"></div></section>
-<div id="options"></div>
-<div id="answer" class="answer hidden"><strong id="answerStatus"></strong><span id="explanation"></span></div>
-<button id="next" class="next hidden" onclick="nextQuestion()">Next Question →</button>
+
+<header class="quizhead">
+
+<button class="back" onclick="quitQuiz()">←</button>
+
+<div class="qtitle">
+
+<span>CCC QUEST</span>
+
+<strong id="quizTitle">
+COMPUTER FUNDAMENTALS
+</strong>
+
 </div>
+
+<div class="counter">
+<b id="qn">1</b> /
+<b id="qt">10</b>
+</div>
+
+</header>
+
+
+<div class="qbar">
+<div class="fill" id="qFill"></div>
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+❤️
+<b id="lives">3</b>
+</div>
+
+<div class="stat">
+🔥
+<b id="streak">0</b>
+</div>
+
+<div class="stat">
+⭐
+<b id="quizXp">0</b>
+</div>
+
+<div class="stat">
+⏱️
+<b id="timer">30</b>
+</div>
+
+</div>
+
+
+<section class="qcard">
+
+<div class="label">
+QUESTION
+</div>
+
+<h2 id="qEnglish"></h2>
+
+<div class="hindi" id="qHindi"></div>
+
+</section>
+
+
+<div id="options"></div>
+
+
+<div id="answer" class="answer hidden">
+
+<strong id="answerStatus"></strong>
+
+<span id="explanation"></span>
+
+</div>
+
+
+<button id="next"
+class="next hidden"
+onclick="nextQuestion()">
+
+Next Question →
+
+</button>
+
+</div>
+
+
+<!-- ================= PROGRESS ================= -->
 
 <div id="progress" class="screen hidden">
-<header class="screenhead"><button class="back" onclick="showHome()">←</button><div><h2>My Progress</h2><p>Your learning statistics</p></div></header>
+
+<header class="screenhead">
+
+<button class="back" onclick="showHome()">←</button>
+
+<div>
+<h2>My Progress</h2>
+<p>Your learning statistics</p>
+</div>
+
+</header>
+
+
 <div class="statbox">
-<div class="smallcard">⭐ XP<br><b id="pXp">0</b></div><div class="smallcard">🏆 Level<br><b id="pLevel">1</b></div>
-<div class="smallcard">📝 Attempted<br><b id="pAttempted">0</b></div><div class="smallcard">✅ Correct<br><b id="pCorrect">0</b></div>
-<div class="smallcard">❌ Wrong<br><b id="pWrong">0</b></div><div class="smallcard">🔥 Best Streak<br><b id="pStreak">0</b></div>
+
+<div class="smallcard">
+⭐ XP
+<br>
+<b id="pXp">0</b>
 </div>
+
+<div class="smallcard">
+🏆 Level
+<br>
+<b id="pLevel">1</b>
 </div>
+
+<div class="smallcard">
+📝 Attempted
+<br>
+<b id="pAttempted">0</b>
+</div>
+
+<div class="smallcard">
+✅ Correct
+<br>
+<b id="pCorrect">0</b>
+</div>
+
+<div class="smallcard">
+❌ Wrong
+<br>
+<b id="pWrong">0</b>
+</div>
+
+<div class="smallcard">
+🔥 Best Streak
+<br>
+<b id="pStreak">0</b>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= ACHIEVEMENTS ================= -->
 
 <div id="achievements" class="screen hidden">
-<header class="screenhead"><button class="back" onclick="showHome()">←</button><div><h2>Achievements</h2><p>Earn badges by playing</p></div></header>
-<div id="achievementList"></div>
+
+<header class="screenhead">
+
+<button class="back" onclick="showHome()">←</button>
+
+<div>
+<h2>Achievements</h2>
+<p>Earn badges by playing</p>
 </div>
+
+</header>
+
+<div id="achievementList"></div>
+
+</div>
+
+
+<!-- ================= WRONG QUESTIONS ================= -->
 
 <div id="wrong" class="screen hidden">
-<header class="screenhead"><button class="back" onclick="showHome()">←</button><div><h2>Wrong Questions</h2><p>Review questions you missed</p></div></header>
-<input class="search" id="wrongSearch" placeholder="Search wrong questions..." oninput="renderWrong()">
-<div id="wrongList"></div>
+
+<header class="screenhead">
+
+<button class="back" onclick="showHome()">←</button>
+
+<div>
+<h2>Wrong Questions</h2>
+<p>Review questions you missed</p>
 </div>
 
+</header>
+
+
+<input
+class="search"
+id="wrongSearch"
+placeholder="Search wrong questions..."
+oninput="renderWrong()"
+>
+
+<div id="wrongList"></div>
+
+</div>
+
+
 <script>
+
+/* =========================================================
+   CCC QUEST
+   COMPLETE QUIZ ENGINE
+   ========================================================= */
+
+
+/* ================= CHAPTERS ================= */
+
 const chapters=[
-{id:1,name:"Introduction to Computer",topics:"Computer basics, hardware, software, CPU, input/output, memory & storage"},
-{id:2,name:"Introduction to Operating System",topics:"Operating systems, desktop/mobile OS, UI, icons, shortcuts, printers"},
-{id:3,name:"Word Processing (LibreOffice Writer)",topics:"Writer basics, documents, formatting, tables, page setup, mail merge, PDF"},
-{id:4,name:"Spreadsheet (LibreOffice Calc)",topics:"Cells, formulas, functions, sorting, filtering, charts, AutoSum"},
-{id:5,name:"Presentation (LibreOffice Impress)",topics:"Slides, templates, objects, transitions, slide show, printing"},
-{id:6,name:"Introduction to Internet and WWW",topics:"LAN/WAN, topology, Internet, WWW, URL, IP, browsers, search, Wi-Fi"},
-{id:7,name:"E-mail, Social Networking and E-Governance Services",topics:"Email, attachments, Cc/Bcc, social networks, blogs, e-commerce, UMANG, DigiLocker"},
-{id:8,name:"Digital Financial Tools and Applications",topics:"OTP, QR, cards, eWallet, PoS, Internet banking, NEFT, digital payments"},
-{id:9,name:"Overview of FutureSkills and Cyber Security",topics:"IoT, cloud, AI, blockchain, robotics, cyber security and safe computing"}
+
+{
+id:1,
+name:"Introduction to Computer",
+topics:"Computer basics, hardware, software, CPU, input/output, memory & storage"
+},
+
+{
+id:2,
+name:"Introduction to Operating System",
+topics:"Operating systems, desktop/mobile OS, UI, icons, shortcuts, printers"
+},
+
+{
+id:3,
+name:"Word Processing (LibreOffice Writer)",
+topics:"Writer basics, documents, formatting, tables, page setup, mail merge, PDF"
+},
+
+{
+id:4,
+name:"Spreadsheet (LibreOffice Calc)",
+topics:"Cells, formulas, functions, sorting, filtering, charts, AutoSum"
+},
+
+{
+id:5,
+name:"Presentation (LibreOffice Impress)",
+topics:"Slides, templates, objects, transitions, slide show, printing"
+},
+
+{
+id:6,
+name:"Introduction to Internet and WWW",
+topics:"LAN/WAN, topology, Internet, WWW, URL, IP, browsers, search, Wi-Fi"
+},
+
+{
+id:7,
+name:"E-mail, Social Networking and E-Governance Services",
+topics:"Email, attachments, Cc/Bcc, social networks, blogs, e-commerce, UMANG, DigiLocker"
+},
+
+{
+id:8,
+name:"Digital Financial Tools and Applications",
+topics:"OTP, QR, cards, eWallet, PoS, Internet banking, NEFT, digital payments"
+},
+
+{
+id:9,
+name:"Overview of FutureSkills and Cyber Security",
+topics:"IoT, cloud, AI, blockchain, robotics, cyber security and safe computing"
+}
+
 ];
+
+
+/* ================= QUESTION BANK ================= */
+
+/*
+   IMPORTANT:
+   correct answer is NOT kept fixed on screen.
+
+   Every time a question is loaded:
+   - options are shuffled
+   - correct answer index is recalculated
+
+   Therefore:
+   A/B/C/D will change automatically.
+*/
 
 const qs=[
-/* 1 */
-["What is a computer?","कंप्यूटर क्या है?",["An electronic device","A paper document","A mechanical toy","A network cable"],0,1,"A computer is an electronic device that processes data."],
-["Which unit performs most processing operations in a computer?","कंप्यूटर में अधिकांश प्रोसेसिंग कार्य कौन सी इकाई करती है?",["CPU","Monitor","Keyboard","Printer"],0,1,"The CPU is the main processing unit."],
-["Which is an input device?","इनपुट डिवाइस कौन सा है?",["Keyboard","Monitor","Speaker","Projector"],0,1,"A keyboard is used to enter data and instructions."],
-["Which is an output device?","आउटपुट डिवाइस कौन सा है?",["Monitor","Keyboard","Mouse","Scanner"],0,1,"A monitor presents output to the user."],
-["Which memory is volatile?","कौन सी मेमोरी volatile होती है?",["RAM","ROM","DVD","Hard disk"],0,1,"RAM normally loses its contents when power is removed."],
-["Which is system software?","सिस्टम सॉफ्टवेयर कौन सा है?",["Operating system","Spreadsheet file","Photo","Presentation"],0,1,"An operating system is system software."],
-["Which device is used to scan a paper document?","कागज के दस्तावेज को स्कैन करने के लिए किस डिवाइस का उपयोग होता है?",["Scanner","Speaker","Monitor","Keyboard"],0,1,"A scanner converts a physical document into digital data."],
-["What does CPU stand for?","CPU का पूरा नाम क्या है?",["Central Processing Unit","Computer Personal Unit","Central Program Utility","Control Processing User"],0,1,"CPU stands for Central Processing Unit."],
-/* 2 */
-["What is the primary role of an operating system?","Operating system का मुख्य कार्य क्या है?",["Manage computer resources","Create electricity","Print money","Design hardware"],0,2,"The OS manages hardware and provides services for programs and users."],
-["Which is an open-source operating system?","इनमें से कौन सा open-source operating system है?",["Linux","Windows","MS-DOS","iOS"],0,2,"Linux is an open-source operating system."],
-["GUI stands for what?","GUI का पूरा नाम क्या है?",["Graphical User Interface","General User Internet","Graphical Utility Input","Global User Icon"],0,2,"GUI means Graphical User Interface."],
-["What is a desktop icon?","Desktop icon क्या होता है?",["A small graphical representation","A printer cable","A memory chip","A web server"],0,2,"Icons provide visual representations of programs, files or functions."],
-["Which shortcut is commonly used to copy selected content?","Selected content को copy करने के लिए सामान्य shortcut क्या है?",["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+Z"],0,2,"Ctrl+C copies selected content."],
-["Which shortcut is commonly used to paste copied content?","Copied content को paste करने के लिए कौन सा shortcut है?",["Ctrl+V","Ctrl+C","Ctrl+P","Ctrl+S"],0,2,"Ctrl+V pastes copied content."],
-["Which operating system is designed for mobile devices?","Mobile devices के लिए कौन सा operating system बनाया गया है?",["Android","Calc","Writer","Chrome"],0,2,"Android is a mobile operating system."],
-["What does booting mean?","Booting का क्या अर्थ है?",["Starting the computer and loading the OS","Printing a document","Deleting a file","Opening a website"],0,2,"Booting starts the computer and loads the operating system."],
-/* 3 */
-["Which LibreOffice application is used for word processing?","Word processing के लिए LibreOffice का कौन सा application है?",["Writer","Calc","Impress","Base"],0,3,"Writer is LibreOffice's word processor."],
-["What is the default file extension associated with a LibreOffice Writer document?","LibreOffice Writer document की सामान्य file extension क्या है?",[".odt",".ods",".odp",".jpg"],0,3,"Writer documents normally use the .odt format."],
-["Which feature is used to make text bold?","Text को bold करने के लिए कौन सा feature उपयोग होता है?",["Bold","Sort","Filter","Slide Show"],0,3,"Bold increases the visual weight of text."],
-["What is Mail Merge used for?","Mail Merge का उपयोग किस लिए होता है?",["Creating personalised documents from a template and data","Compressing images","Playing videos","Making charts"],0,3,"Mail Merge combines a main document with a data source."],
-["Which area is used to type and edit the document?","Document को type और edit करने के लिए कौन सा area होता है?",["Work area","Status light","Speaker","CPU fan"],0,3,"The work area is where document content is entered and edited."],
-["Which command creates a PDF copy of a document?","Document की PDF copy बनाने के लिए कौन सा कार्य उपयोग होता है?",["Export as PDF","Sort","Mail Merge","AutoSum"],0,3,"LibreOffice can export a document as PDF."],
-["Which orientation is wider than it is tall?","कौन सा page orientation चौड़ा होता है?",["Landscape","Portrait","Square","Circular"],0,3,"Landscape orientation is wider than it is tall."],
-["Which tool helps find spelling mistakes?","Spelling mistakes खोजने में कौन सा tool मदद करता है?",["Spell Check","AutoSum","Slide Show","Filter"],0,3,"Spell Check identifies possible spelling errors."],
-/* 4 */
-["What is the intersection of a row and column called?","Row और column के intersection को क्या कहते हैं?",["Cell","Slide","Page","Folder"],0,4,"The intersection of a row and column is a cell."],
-["Which symbol normally begins a spreadsheet formula?","Spreadsheet formula सामान्यतः किस symbol से शुरू होता है?",["=","#","@","&"],0,4,"Spreadsheet formulas begin with an equals sign."],
-["Which LibreOffice application is used for spreadsheets?","Spreadsheet के लिए कौन सा LibreOffice application है?",["Calc","Writer","Impress","Draw"],0,4,"Calc is the spreadsheet application."],
-["Which function adds values in a range?","Range की values जोड़ने के लिए कौन सा function है?",["SUM","COUNT","MAX","MIN"],0,4,"SUM adds numeric values."],
-["What identifies a cell such as C2?","C2 जैसी पहचान किसकी होती है?",["Cell address","File extension","Slide number","Printer name"],0,4,"A cell address uses a column letter and row number."],
-["Which feature arranges data according to an order?","Data को क्रम में लगाने के लिए कौन सा feature है?",["Sort","Mail Merge","Slide Show","Zoom"],0,4,"Sorting arranges data according to selected criteria."],
-["Which feature displays only records meeting conditions?","Conditions को पूरा करने वाले records दिखाने के लिए कौन सा feature है?",["Filter","Bold","Print Preview","Header"],0,4,"Filtering hides records that do not match the criteria."],
-["What is AutoSum commonly represented by?","AutoSum को सामान्यतः किस symbol से दर्शाया जाता है?",["Σ","π","∞","√"],0,4,"AutoSum is commonly represented by the sigma symbol."],
-/* 5 */
-["Which LibreOffice application is used to create presentations?","Presentation बनाने के लिए कौन सा LibreOffice application है?",["Impress","Writer","Calc","Base"],0,5,"Impress is the presentation application."],
-["What is a presentation made up of?","Presentation किससे बनी होती है?",["Slides","Cells","Rows","Directories"],0,5,"A presentation is made up of slides."],
-["Which feature controls movement from one slide to another?","एक slide से दूसरी slide के movement को कौन control करता है?",["Transition","Formula","Mail Merge","Filter"],0,5,"Slide transitions control the visual change between slides."],
-["What is a template used for?","Template का उपयोग किस लिए होता है?",["Providing a ready-made design","Deleting slides","Scanning documents","Sending email"],0,5,"Templates provide predefined design and layout."],
-["What is Slide Show used for?","Slide Show का उपयोग किस लिए होता है?",["Displaying the presentation","Calculating cells","Formatting a paragraph","Scanning"],0,5,"Slide Show displays the presentation to an audience."],
-["Which object can be inserted into a presentation?","Presentation में कौन सा object insert किया जा सकता है?",["Picture","Only keyboard","CPU","RAM chip"],0,5,"Pictures and many other objects can be inserted into slides."],
-["What is a master slide used for?","Master slide का उपयोग किस लिए होता है?",["Applying common design elements","Sending email","Sorting data","Installing an OS"],0,5,"A master slide helps apply common formatting across slides."],
-["What can be printed from a presentation?","Presentation से क्या print किया जा सकता है?",["Slides and handouts","Only RAM","Only formulas","Only passwords"],0,5,"Slides and handouts can be printed."],
-/* 6 */
-["What is the Internet?","Internet क्या है?",["A network of networks","A single computer","A printer","A word processor"],0,6,"The Internet is a global network of interconnected networks."],
-["What does WWW stand for?","WWW का पूरा नाम क्या है?",["World Wide Web","World Web Window","Wide World Word","Web World Work"],0,6,"WWW means World Wide Web."],
-["What does URL identify?","URL किसे identify करता है?",["A web resource address","A keyboard key","A CPU core","A spreadsheet cell"],0,6,"A URL specifies the address of a resource on the web."],
-["Which device can provide wireless Internet access?","Wireless Internet access कौन दे सकता है?",["Wi-Fi router","Keyboard","Scanner","Printer"],0,6,"A Wi-Fi router can provide wireless network access."],
-["What is LAN?","LAN क्या है?",["Local Area Network","Large Access Node","Long Area Number","Local Application Name"],0,6,"LAN means Local Area Network."],
-["What is WAN?","WAN क्या है?",["Wide Area Network","Web Access Name","Wireless Application Node","World Area Number"],0,6,"WAN means Wide Area Network."],
-["Which is a web browser?","Web browser कौन सा है?",["Mozilla Firefox","LibreOffice Calc","Windows Explorer only","PowerPoint"],0,6,"Mozilla Firefox is a web browser."],
-["What does ISP stand for?","ISP का पूरा नाम क्या है?",["Internet Service Provider","Internet Search Program","Internal System Protocol","Internet Security Page"],0,6,"ISP means Internet Service Provider."],
-/* 7 */
-["What is e-mail?","E-mail क्या है?",["Electronic mail","Electric machine","External memory","Encoded monitor"],0,7,"E-mail is a system for sending and receiving electronic messages."],
-["What is Bcc used for?","Bcc का उपयोग किस लिए होता है?",["Hiding recipients from other recipients","Making text bold","Adding a chart","Sorting mail"],0,7,"Bcc hides the Bcc recipient list from other recipients."],
-["What does Cc mean in e-mail?","E-mail में Cc का क्या अर्थ है?",["Carbon Copy","Computer Copy","Central Communication","Common Contact"],0,7,"Cc means Carbon Copy."],
-["Which item can be attached to an e-mail?","E-mail में क्या attach किया जा सकता है?",["A PDF file","Only a password","Only a keyboard","Only a monitor"],0,7,"Files such as PDFs can be attached to an email."],
-["What is a blog post?","Blog post क्या होता है?",["An entry published on a blog","A computer cable","A spreadsheet cell","A printer setting"],0,7,"A blog post is an entry published on a blog."],
-["What is e-governance?","E-governance क्या है?",["Use of IT by government services","Online gaming only","Photo editing","Computer assembly"],0,7,"E-governance uses information technology for government services."],
-["What is UMANG related to?","UMANG किससे संबंधित है?",["Accessing government services digitally","Spreadsheet formulas","Slide transitions","Computer memory"],0,7,"UMANG provides access to many government services digitally."],
-["What is DigiLocker used for?","DigiLocker का उपयोग किस लिए होता है?",["Digital storage/access of documents","Playing music","Creating spreadsheets","Browsing only"],0,7,"DigiLocker is used for digital documents and credentials."],
-/* 8 */
-["What is an OTP?","OTP क्या है?",["One Time Password","Online Transfer Program","Open Text Protocol","One Token Page"],0,8,"OTP is a password/code intended for a single use or transaction."],
-["What does QR stand for?","QR का पूरा नाम क्या है?",["Quick Response","Quick Record","Query Response","Quality Reader"],0,8,"QR means Quick Response."],
-["What is a PoS terminal mainly used for?","PoS terminal का मुख्य उपयोग क्या है?",["Processing payments at a point of sale","Editing documents","Creating slides","Scanning websites"],0,8,"PoS systems process transactions at a point of sale."],
-["What is Internet banking?","Internet banking क्या है?",["Banking services through the Internet","Printing bank forms only","Offline cash counting","Computer repair"],0,8,"Internet banking lets users perform banking activities online."],
-["What does NEFT stand for?","NEFT का पूरा नाम क्या है?",["National Electronic Funds Transfer","National Easy Finance Tool","New Electronic File Transfer","Network Enabled Fund Technology"],0,8,"NEFT means National Electronic Funds Transfer."],
-["What is an eWallet?","eWallet क्या है?",["A digital wallet for electronic transactions","A physical keyboard","A printer driver","A web browser"],0,8,"An eWallet stores payment information/value for electronic transactions."],
-["What should be protected during online banking?","Online banking में किसे सुरक्षित रखना चाहिए?",["Password and authentication details","Public website title","Monitor brightness","Printer paper"],0,8,"Passwords and authentication information must be kept secure."],
-["What is AEPS associated with?","AEPS किससे संबंधित है?",["Aadhaar Enabled Payment System","Automatic Email Printing Service","Advanced Encryption Page System","Account Entry Processing Software"],0,8,"AEPS means Aadhaar Enabled Payment System."],
-/* 9 */
-["What does IoT stand for?","IoT का पूरा नाम क्या है?",["Internet of Things","Internet of Tools","Input of Technology","Internal Online Transfer"],0,9,"IoT means Internet of Things."],
-["What is cloud computing?","Cloud computing क्या है?",["Using computing resources/services over a network","Cleaning a computer","Printing clouds","Offline typing"],0,9,"Cloud computing provides computing resources and services over networks."],
-["What is Artificial Intelligence?","Artificial Intelligence क्या है?",["Technology that enables machines to perform tasks associated with human intelligence","A printer technology","A file extension","A keyboard layout"],0,9,"AI enables systems to perform tasks such as learning or decision-making."],
-["What is blockchain commonly described as?","Blockchain को सामान्यतः कैसे describe किया जाता है?",["A distributed digital ledger","A monitor type","A word processor","A printer cable"],0,9,"Blockchain is commonly described as a distributed digital ledger."],
-["What is cyber security concerned with?","Cyber security किससे संबंधित है?",["Protecting systems, networks and data","Making slides","Typing letters","Increasing screen size"],0,9,"Cyber security protects digital systems, networks and data."],
-["Which is a good password practice?","Good password practice कौन सी है?",["Use a strong unique password","Share it publicly","Use only your name","Use the same password everywhere"],0,9,"Strong, unique passwords reduce account compromise risk."],
-["What is 3D printing?","3D printing क्या है?",["Creating physical objects layer by layer from a digital model","Printing only text","Sending email","Scanning websites"],0,9,"3D printers build objects layer by layer from digital designs."],
-["What is RPA?","RPA का पूरा नाम क्या है?",["Robotics Process Automation","Remote Printing Access","Random Program Analysis","Rapid Password Authentication"],0,9,"RPA means Robotics Process Automation."]
+
+/* ===== CHAPTER 1 ===== */
+
+["What is a computer?","कंप्यूटर क्या है?",
+["An electronic device","A paper document","A mechanical toy","A network cable"],
+0,1,"A computer is an electronic device that processes data."],
+
+["Which unit performs most processing operations in a computer?","कंप्यूटर में अधिकांश प्रोसेसिंग कार्य कौन सी इकाई करती है?",
+["CPU","Monitor","Keyboard","Printer"],
+0,1,"The CPU is the main processing unit."],
+
+["Which is an input device?","इनपुट डिवाइस कौन सा है?",
+["Keyboard","Monitor","Speaker","Projector"],
+0,1,"A keyboard is used to enter data and instructions."],
+
+["Which is an output device?","आउटपुट डिवाइस कौन सा है?",
+["Monitor","Keyboard","Mouse","Scanner"],
+0,1,"A monitor presents output to the user."],
+
+["Which memory is volatile?","कौन सी मेमोरी volatile होती है?",
+["RAM","ROM","DVD","Hard disk"],
+0,1,"RAM normally loses its contents when power is removed."],
+
+["Which is system software?","सिस्टम सॉफ्टवेयर कौन सा है?",
+["Operating system","Spreadsheet file","Photo","Presentation"],
+0,1,"An operating system is system software."],
+
+["Which device is used to scan a paper document?","कागज के दस्तावेज को स्कैन करने के लिए किस डिवाइस का उपयोग होता है?",
+["Scanner","Speaker","Monitor","Keyboard"],
+0,1,"A scanner converts a physical document into digital data."],
+
+["What does CPU stand for?","CPU का पूरा नाम क्या है?",
+["Central Processing Unit","Computer Personal Unit","Central Program Utility","Control Processing User"],
+0,1,"CPU stands for Central Processing Unit."],
+
+
+/* ===== CHAPTER 2 ===== */
+
+["What is the primary role of an operating system?","Operating system का मुख्य कार्य क्या है?",
+["Manage computer resources","Create electricity","Print money","Design hardware"],
+0,2,"The OS manages hardware and provides services for programs and users."],
+
+["Which is an open-source operating system?","इनमें से कौन सा open-source operating system है?",
+["Linux","Windows","MS-DOS","iOS"],
+0,2,"Linux is an open-source operating system."],
+
+["GUI stands for what?","GUI का पूरा नाम क्या है?",
+["Graphical User Interface","General User Internet","Graphical Utility Input","Global User Icon"],
+0,2,"GUI means Graphical User Interface."],
+
+["What is a desktop icon?","Desktop icon क्या होता है?",
+["A small graphical representation","A printer cable","A memory chip","A web server"],
+0,2,"Icons provide visual representations of programs, files or functions."],
+
+["Which shortcut is commonly used to copy selected content?","Selected content को copy करने के लिए सामान्य shortcut क्या है?",
+["Ctrl+C","Ctrl+V","Ctrl+X","Ctrl+Z"],
+0,2,"Ctrl+C copies selected content."],
+
+["Which shortcut is commonly used to paste copied content?","Copied content को paste करने के लिए कौन सा shortcut है?",
+["Ctrl+V","Ctrl+C","Ctrl+P","Ctrl+S"],
+0,2,"Ctrl+V pastes copied content."],
+
+["Which operating system is designed for mobile devices?","Mobile devices के लिए कौन सा operating system बनाया गया है?",
+["Android","Calc","Writer","Chrome"],
+0,2,"Android is a mobile operating system."],
+
+["What does booting mean?","Booting का क्या अर्थ है?",
+["Starting the computer and loading the OS","Printing a document","Deleting a file","Opening a website"],
+0,2,"Booting starts the computer and loads the operating system."],
+
+
+/* ===== CHAPTER 3 ===== */
+
+["Which LibreOffice application is used for word processing?","Word processing के लिए LibreOffice का कौन सा application है?",
+["Writer","Calc","Impress","Base"],
+0,3,"Writer is LibreOffice's word processor."],
+
+["What is the default file extension associated with a LibreOffice Writer document?","LibreOffice Writer document की सामान्य file extension क्या है?",
+[".odt",".ods",".odp",".jpg"],
+0,3,"Writer documents normally use the .odt format."],
+
+["Which feature is used to make text bold?","Text को bold करने के लिए कौन सा feature उपयोग होता है?",
+["Bold","Sort","Filter","Slide Show"],
+0,3,"Bold increases the visual weight of text."],
+
+["What is Mail Merge used for?","Mail Merge का उपयोग किस लिए होता है?",
+["Creating personalised documents from a template and data","Compressing images","Playing videos","Making charts"],
+0,3,"Mail Merge combines a main document with a data source."],
+
+["Which area is used to type and edit the document?","Document को type और edit करने के लिए कौन सा area होता है?",
+["Work area","Status light","Speaker","CPU fan"],
+0,3,"The work area is where document content is entered and edited."],
+
+["Which command creates a PDF copy of a document?","Document की PDF copy बनाने के लिए कौन सा कार्य उपयोग होता है?",
+["Export as PDF","Sort","Mail Merge","AutoSum"],
+0,3,"LibreOffice can export a document as PDF."],
+
+["Which orientation is wider than it is tall?","कौन सा page orientation चौड़ा होता है?",
+["Landscape","Portrait","Square","Circular"],
+0,3,"Landscape orientation is wider than it is tall."],
+
+["Which tool helps find spelling mistakes?","Spelling mistakes खोजने में कौन सा tool मदद करता है?",
+["Spell Check","AutoSum","Slide Show","Filter"],
+0,3,"Spell Check identifies possible spelling errors."],
+
+
+/* ===== CHAPTER 4 ===== */
+
+["What is the intersection of a row and column called?","Row और column के intersection को क्या कहते हैं?",
+["Cell","Slide","Page","Folder"],
+0,4,"The intersection of a row and column is a cell."],
+
+["Which symbol normally begins a spreadsheet formula?","Spreadsheet formula सामान्यतः किस symbol से शुरू होता है?",
+["=","#","@","&"],
+0,4,"Spreadsheet formulas begin with an equals sign."],
+
+["Which LibreOffice application is used for spreadsheets?","Spreadsheet के लिए कौन सा LibreOffice application है?",
+["Calc","Writer","Impress","Draw"],
+0,4,"Calc is the spreadsheet application."],
+
+["Which function adds values in a range?","Range की values जोड़ने के लिए कौन सा function है?",
+["SUM","COUNT","MAX","MIN"],
+0,4,"SUM adds numeric values."],
+
+["What identifies a cell such as C2?","C2 जैसी पहचान किसकी होती है?",
+["Cell address","File extension","Slide number","Printer name"],
+0,4,"A cell address uses a column letter and row number."],
+
+["Which feature arranges data according to an order?","Data को क्रम में लगाने के लिए कौन सा feature है?",
+["Sort","Mail Merge","Slide Show","Zoom"],
+0,4,"Sorting arranges data according to selected criteria."],
+
+["Which feature displays only records meeting conditions?","Conditions को पूरा करने वाले records दिखाने के लिए कौन सा feature है?",
+["Filter","Bold","Print Preview","Header"],
+0,4,"Filtering hides records that do not match the criteria."],
+
+["What is AutoSum commonly represented by?","AutoSum को सामान्यतः किस symbol से दर्शाया जाता है?",
+["Σ","π","∞","√"],
+0,4,"AutoSum is commonly represented by the sigma symbol."],
+
+
+/* ===== CHAPTER 5 ===== */
+
+["Which LibreOffice application is used to create presentations?","Presentation बनाने के लिए कौन सा LibreOffice application है?",
+["Impress","Writer","Calc","Base"],
+0,5,"Impress is the presentation application."],
+
+["What is a presentation made up of?","Presentation किससे बनी होती है?",
+["Slides","Cells","Rows","Directories"],
+0,5,"A presentation is made up of slides."],
+
+["Which feature controls movement from one slide to another?","एक slide से दूसरी slide के movement को कौन control करता है?",
+["Transition","Formula","Mail Merge","Filter"],
+0,5,"Slide transitions control the visual change between slides."],
+
+["What is a template used for?","Template का उपयोग किस लिए होता है?",
+["Providing a ready-made design","Deleting slides","Scanning documents","Sending email"],
+0,5,"Templates provide predefined design and layout."],
+
+["What is Slide Show used for?","Slide Show का उपयोग किस लिए होता है?",
+["Displaying the presentation","Calculating cells","Formatting a paragraph","Scanning"],
+0,5,"Slide Show displays the presentation to an audience."],
+
+["Which object can be inserted into a presentation?","Presentation में कौन सा object insert किया जा सकता है?",
+["Picture","Only keyboard","CPU","RAM chip"],
+0,5,"Pictures and many other objects can be inserted into slides."],
+
+["What is a master slide used for?","Master slide का उपयोग किस लिए होता है?",
+["Applying common design elements","Sending email","Sorting data","Installing an OS"],
+0,5,"A master slide helps apply common formatting across slides."],
+
+["What can be printed from a presentation?","Presentation से क्या print किया जा सकता है?",
+["Slides and handouts","Only RAM","Only formulas","Only passwords"],
+0,5,"Slides and handouts can be printed."],
+
+
+/* ===== CHAPTER 6 ===== */
+
+["What is the Internet?","Internet क्या है?",
+["A network of networks","A single computer","A printer","A word processor"],
+0,6,"The Internet is a global network of interconnected networks."],
+
+["What does WWW stand for?","WWW का पूरा नाम क्या है?",
+["World Wide Web","World Web Window","Wide World Word","Web World Work"],
+0,6,"WWW means World Wide Web."],
+
+["What does URL identify?","URL किसे identify करता है?",
+["A web resource address","A keyboard key","A CPU core","A spreadsheet cell"],
+0,6,"A URL specifies the address of a resource on the web."],
+
+["Which device can provide wireless Internet access?","Wireless Internet access कौन दे सकता है?",
+["Wi-Fi router","Keyboard","Scanner","Printer"],
+0,6,"A Wi-Fi router can provide wireless network access."],
+
+["What is LAN?","LAN क्या है?",
+["Local Area Network","Large Access Node","Long Area Number","Local Application Name"],
+0,6,"LAN means Local Area Network."],
+
+["What is WAN?","WAN क्या है?",
+["Wide Area Network","Web Access Name","Wireless Application Node","World Area Number"],
+0,6,"WAN means Wide Area Network."],
+
+["Which is a web browser?","Web browser कौन सा है?",
+["Mozilla Firefox","LibreOffice Calc","Windows Explorer only","PowerPoint"],
+0,6,"Mozilla Firefox is a web browser."],
+
+["What does ISP stand for?","ISP का पूरा नाम क्या है?",
+["Internet Service Provider","Internet Search Program","Internal System Protocol","Internet Security Page"],
+0,6,"ISP means Internet Service Provider."],
+
+
+/* ===== CHAPTER 7 ===== */
+
+["What is e-mail?","E-mail क्या है?",
+["Electronic mail","Electric machine","External memory","Encoded monitor"],
+0,7,"E-mail is a system for sending and receiving electronic messages."],
+
+["What is Bcc used for?","Bcc का उपयोग किस लिए होता है?",
+["Hiding recipients from other recipients","Making text bold","Adding a chart","Sorting mail"],
+0,7,"Bcc hides the Bcc recipient list from other recipients."],
+
+["What does Cc mean in e-mail?","E-mail में Cc का क्या अर्थ है?",
+["Carbon Copy","Computer Copy","Central Communication","Common Contact"],
+0,7,"Cc means Carbon Copy."],
+
+["Which item can be attached to an e-mail?","E-mail में क्या attach किया जा सकता है?",
+["A PDF file","Only a password","Only a keyboard","Only a monitor"],
+0,7,"Files such as PDFs can be attached to an email."],
+
+["What is a blog post?","Blog post क्या होता है?",
+["An entry published on a blog","A computer cable","A spreadsheet cell","A printer setting"],
+0,7,"A blog post is an entry published on a blog."],
+
+["What is e-governance?","E-governance क्या है?",
+["Use of IT by government services","Online gaming only","Photo editing","Computer assembly"],
+0,7,"E-governance uses information technology for government services."],
+
+["What is UMANG related to?","UMANG किससे संबंधित है?",
+["Accessing government services digitally","Spreadsheet formulas","Slide transitions","Computer memory"],
+0,7,"UMANG provides access to many government services digitally."],
+
+["What is DigiLocker used for?","DigiLocker का उपयोग किस लिए होता है?",
+["Digital storage/access of documents","Playing music","Creating spreadsheets","Browsing only"],
+0,7,"DigiLocker is used for digital documents and credentials."],
+
+
+/* ===== CHAPTER 8 ===== */
+
+["What is an OTP?","OTP क्या है?",
+["One Time Password","Online Transfer Program","Open Text Protocol","One Token Page"],
+0,8,"OTP is a password/code intended for a single use or transaction."],
+
+["What does QR stand for?","QR का पूरा नाम क्या है?",
+["Quick Response","Quick Record","Query Response","Quality Reader"],
+0,8,"QR means Quick Response."],
+
+["What is a PoS terminal mainly used for?","PoS terminal का मुख्य उपयोग क्या है?",
+["Processing payments at a point of sale","Editing documents","Creating slides","Scanning websites"],
+0,8,"PoS systems process transactions at a point of sale."],
+
+["What is Internet banking?","Internet banking क्या है?",
+["Banking services through the Internet","Printing bank forms only","Offline cash counting","Computer repair"],
+0,8,"Internet banking lets users perform banking activities online."],
+
+["What does NEFT stand for?","NEFT का पूरा नाम क्या है?",
+["National Electronic Funds Transfer","National Easy Finance Tool","New Electronic File Transfer","Network Enabled Fund Technology"],
+0,8,"NEFT means National Electronic Funds Transfer."],
+
+["What is an eWallet?","eWallet क्या है?",
+["A digital wallet for electronic transactions","A physical keyboard","A printer driver","A web browser"],
+0,8,"An eWallet stores payment information/value for electronic transactions."],
+
+["What should be protected during online banking?","Online banking में किसे सुरक्षित रखना चाहिए?",
+["Password and authentication details","Public website title","Monitor brightness","Printer paper"],
+0,8,"Passwords and authentication information must be kept secure."],
+
+["What is AEPS associated with?","AEPS किससे संबंधित है?",
+["Aadhaar Enabled Payment System","Automatic Email Printing Service","Advanced Encryption Page System","Account Entry Processing Software"],
+0,8,"AEPS means Aadhaar Enabled Payment System."],
+
+
+/* ===== CHAPTER 9 ===== */
+
+["What does IoT stand for?","IoT का पूरा नाम क्या है?",
+["Internet of Things","Internet of Tools","Input of Technology","Internal Online Transfer"],
+0,9,"IoT means Internet of Things."],
+
+["What is cloud computing?","Cloud computing क्या है?",
+["Using computing resources/services over a network","Cleaning a computer","Printing clouds","Offline typing"],
+0,9,"Cloud computing provides computing resources and services over networks."],
+
+["What is Artificial Intelligence?","Artificial Intelligence क्या है?",
+["Technology that enables machines to perform tasks associated with human intelligence","A printer technology","A file extension","A keyboard layout"],
+0,9,"AI enables systems to perform tasks such as learning or decision-making."],
+
+["What is blockchain commonly described as?","Blockchain को सामान्यतः कैसे describe किया जाता है?",
+["A distributed digital ledger","A monitor type","A word processor","A printer cable"],
+0,9,"Blockchain is commonly described as a distributed digital ledger."],
+
+["What is cyber security concerned with?","Cyber security किससे संबंधित है?",
+["Protecting systems, networks and data","Making slides","Typing letters","Increasing screen size"],
+0,9,"Cyber security protects digital systems, networks and data."],
+
+["Which is a good password practice?","Good password practice कौन सी है?",
+["Use a strong unique password","Share it publicly","Use only your name","Use the same password everywhere"],
+0,9,"Strong, unique passwords reduce account compromise risk."],
+
+["What is 3D printing?","3D printing क्या है?",
+["Creating physical objects layer by layer from a digital model","Printing only text","Sending email","Scanning websites"],
+0,9,"3D printers build objects layer by layer from digital designs."],
+
+["What is RPA?","RPA का पूरा नाम क्या है?",
+["Robotics Process Automation","Remote Printing Access","Random Program Analysis","Rapid Password Authentication"],
+0,9,"RPA means Robotics Process Automation."]
+
 ];
 
-let state=JSON.parse(localStorage.getItem("cccQuestState")||"null")||{xp:0,attempted:0,correct:0,wrong:0,bestStreak:0,wrongQuestions:[]};
-let session={list:[],i:0,score:0,xp:0,lives:3,streak:0,timer:null,answered:false};
 
-function save(){localStorage.setItem("cccQuestState",JSON.stringify(state))}
-function el(id){return document.getElementById(id)}
-function hideAll(){["home","chapters","quiz","progress","achievements","wrong"].forEach(x=>el(x).classList.add("hidden"))}
-function showHome(){clearInterval(session.timer);hideAll();el("home").classList.remove("hidden");updateHome();scrollTo(0,0)}
-function updateHome(){let level=Math.floor(state.xp/1000)+1,cur=state.xp%1000;el("level").textContent="Level "+level;el("xpText").textContent=cur+" / 1000";el("xpFill").style.width=(cur/10)+"%";save()}
-function showChapters(){hideAll();el("chapters").classList.remove("hidden");el("chapterList").innerHTML=chapters.map(c=>`<button class="chapter" onclick="startQuiz(${c.id})"><div class="num">${String(c.id).padStart(2,"0")}</div><div><h3>${c.name}</h3><p>${c.topics}</p></div><span class="arrow">›</span></button>`).join("");scrollTo(0,0)}
-function showProgress(){hideAll();el("progress").classList.remove("hidden");let level=Math.floor(state.xp/1000)+1;el("pXp").textContent=state.xp;el("pLevel").textContent=level;el("pAttempted").textContent=state.attempted;el("pCorrect").textContent=state.correct;el("pWrong").textContent=state.wrong;el("pStreak").textContent=state.bestStreak;scrollTo(0,0)}
-function showAchievements(){hideAll();el("achievements").classList.remove("hidden");let a=[["🌱","First Step",state.attempted>=1,"Answer your first question"],["🎯","10 Correct",state.correct>=10,"Get 10 correct answers"],["🔥","Streak Master",state.bestStreak>=5,"Reach a 5-question streak"],["⭐","XP Hunter",state.xp>=1000,"Earn 1000 XP"],["🏆","CCC Champion",state.correct>=50,"Get 50 correct answers"]];el("achievementList").innerHTML=a.map(x=>`<div class="achievement ${x[2]?"":"locked"}"><div class="badge">${x[0]}</div><div><b>${x[1]}</b><div style="color:var(--muted);font-size:13px;margin-top:4px">${x[3]}</div></div><div style="margin-left:auto">${x[2]?"✓":"🔒"}</div></div>`).join("");scrollTo(0,0)}
-function showWrong(){hideAll();el("wrong").classList.remove("hidden");renderWrong();scrollTo(0,0)}
-function renderWrong(){let q=(state.wrongQuestions||[]),s=(el("wrongSearch").value||"").toLowerCase();q=q.filter(x=>x.english.toLowerCase().includes(s)||x.hindi.includes(s));el("wrongList").innerHTML=q.length?q.map((x,i)=>`<div class="smallcard" style="margin:10px 0"><b>Q${i+1}. ${x.english}</b><div style="color:#c7cbd7;margin:8px 0">${x.hindi}</div><div style="color:var(--green);font-size:13px">Correct: ${x.options[x.correct]}</div></div>`).join(""):`<div class="card" style="text-align:center;color:var(--muted)">${state.wrongQuestions?.length?"No matching questions.":"No wrong questions yet. Great job!"}</div>`}
-function showSettings(){alert("CCC QUEST\n\nYour progress is saved automatically on this device.\n\nTip: Clear browser site data only if you want to reset progress.")}
-function buildList(mode){let a=qs.map((x,i)=>({...toQ(x),id:i}));if(mode==="all")return shuffle(a);let c=chapters.find(x=>x.id===mode);return shuffle(a.filter(x=>x.chapter===mode));}
-function toQ(x){return {english:x[0],hindi:x[1],options:x[2],correct:x[3],chapter:x[4],explanation:x[5]}}
-function shuffle(a){return a.sort(()=>Math.random()-.5)}
-function startQuiz(mode){let list=buildList(mode);if(!list.length)return;session={list:list.slice(0,Math.min(10,list.length)),i:0,score:0,xp:0,lives:3,streak:0,timer:null,answered:false};hideAll();el("quiz").classList.remove("hidden");el("quizTitle").textContent=mode==="all"?"COMPLETE CCC COURSE":chapters.find(c=>c.id===mode).name.toUpperCase();el("qt").textContent=session.list.length;loadQ();scrollTo(0,0)}
-function startMock(){let list=shuffle(qs.map((x,i)=>({...toQ(x),id:i}))).slice(0,20);session={list,i:0,score:0,xp:0,lives:3,streak:0,timer:null,answered:false};hideAll();el("quiz").classList.remove("hidden");el("quizTitle").textContent="MOCK EXAM";el("qt").textContent=session.list.length;loadQ();scrollTo(0,0)}
-function startDaily(){startQuiz("all");session.list=session.list.slice(0,10);el("qt").textContent=10}
-function loadQ(){clearInterval(session.timer);session.answered=false;let q=session.list[session.i];el("qn").textContent=session.i+1;el("qFill").style.width=((session.i+1)/session.list.length*100)+"%";el("qEnglish").textContent=q.english;el("qHindi").textContent=q.hindi;el("lives").textContent=session.lives;el("streak").textContent=session.streak;el("quizXp").textContent=session.xp;el("answer").classList.add("hidden");el("next").classList.add("hidden");el("next").textContent="Next Question →";el("options").innerHTML=q.options.map((o,i)=>`<button class="option" onclick="answer(${i})"><span class="letter">${String.fromCharCode(65+i)}</span><span>${o}</span></button>`).join("");startTimer()}
-function startTimer(){let t=30;el("timer").textContent=t;session.timer=setInterval(()=>{t--;el("timer").textContent=t;if(t<=0){clearInterval(session.timer);if(!session.answered){session.answered=true;answer(-1,true)}}},1000)}
-function answer(index,timed=false){if(session.answered)return;session.answered=true;clearInterval(session.timer);let q=session.list[session.i],buttons=[...document.querySelectorAll(".option")];buttons.forEach(b=>b.disabled=true);if(index===q.correct){buttons[index].classList.add("correct");session.score++;session.streak++;session.xp+=100;state.xp+=100;state.correct++;state.attempted++;if(session.streak>state.bestStreak)state.bestStreak=session.streak;el("answerStatus").textContent="✅ Correct Answer!";el("answerStatus").style.color="var(--green)";el("explanation").textContent=q.explanation}else{if(index>=0)buttons[index].classList.add("wrong");buttons[q.correct].classList.add("correct");session.lives--;session.streak=0;state.wrong++;state.attempted++;state.wrongQuestions=state.wrongQuestions||[];state.wrongQuestions.unshift(q);state.wrongQuestions=state.wrongQuestions.slice(0,100);el("answerStatus").textContent=timed?"⏰ Time's Up!":"❌ Wrong Answer!";el("answerStatus").style.color="var(--red)";el("explanation").textContent=q.explanation+" Correct answer: "+q.options[q.correct]+"."}save();el("lives").textContent=session.lives;el("streak").textContent=session.streak;el("quizXp").textContent=session.xp;el("answer").classList.remove("hidden");el("next").classList.remove("hidden");if(session.i===session.list.length-1||session.lives<=0)el("next").textContent="View Result →"}
-function nextQuestion(){if(session.i>=session.list.length-1||session.lives<=0){result();return}session.i++;loadQ();scrollTo(0,0)}
-function result(){clearInterval(session.timer);let pct=Math.round(session.score/session.list.length*100);el("quiz").innerHTML=`<div class="card result" style="margin-top:50px"><div class="label">QUIZ COMPLETE</div><h2>🎉 Great Job!</h2><div class="big">${pct}%</div><p style="color:var(--muted)">${session.score} / ${session.list.length} correct</p><p style="color:var(--gold)">⭐ ${session.xp} XP earned</p><div class="statbox" style="margin-top:20px"><div class="smallcard">❤️ Lives<br><b>${session.lives}</b></div><div class="smallcard">🔥 Streak<br><b>${session.streak}</b></div></div><button class="next" onclick="restoreQuiz()">Back to Home</button></div>`}
-function restoreQuiz(){location.reload()}
-function quitQuiz(){if(confirm("Quit this quiz?"))location.reload()}
+/* =========================================================
+   STATE
+   ========================================================= */
+
+let state;
+
+try{
+
+state=
+JSON.parse(
+localStorage.getItem("cccQuestState")
+);
+
+}catch(e){
+
+state=null;
+
+}
+
+if(!state){
+
+state={
+xp:0,
+attempted:0,
+correct:0,
+wrong:0,
+bestStreak:0,
+wrongQuestions:[]
+};
+
+}
+
+state.wrongQuestions=state.wrongQuestions||[];
+
+
+/* =========================================================
+   SESSION
+   ========================================================= */
+
+let session={
+list:[],
+i:0,
+score:0,
+xp:0,
+lives:3,
+streak:0,
+timer:null,
+answered:false
+};
+
+
+/* =========================================================
+   BASIC FUNCTIONS
+   ========================================================= */
+
+function save(){
+
+localStorage.setItem(
+"cccQuestState",
+JSON.stringify(state)
+);
+
+}
+
+
+function el(id){
+
+return document.getElementById(id);
+
+}
+
+
+function hideAll(){
+
+[
+"home",
+"chapters",
+"quiz",
+"progress",
+"achievements",
+"wrong"
+].forEach(
+id=>el(id).classList.add("hidden")
+);
+
+}
+
+
+/* =========================================================
+   RANDOM SHUFFLE
+   ========================================================= */
+
+/*
+   Fisher-Yates shuffle.
+
+   Ye normal Math.random sorting se zyada reliable hai.
+*/
+
+function shuffle(array){
+
+const a=[...array];
+
+for(
+let i=a.length-1;
+i>0;
+i--
+){
+
+const j=
+Math.floor(
+Math.random()*(i+1)
+);
+
+[a[i],a[j]]=
+[a[j],a[i]];
+
+}
+
+return a;
+
+}
+
+
+/* =========================================================
+   CREATE QUESTION
+   ========================================================= */
+
+/*
+   YAHI MAIN FIX HAI.
+
+   Original question mein correct = 0 tha.
+
+   Lekin hum options shuffle karne ke baad
+   correct answer ka NEW INDEX calculate karte hain.
+
+   Isliye answer A par fixed nahi rahega.
+*/
+
+function makeQuestion(raw,index){
+
+const originalOptions=
+raw[2].map(
+(text,i)=>({
+text:text,
+correct:i===raw[3]
+})
+);
+
+
+/* Shuffle options */
+
+const shuffledOptions=
+shuffle(originalOptions);
+
+
+/* Find new correct position */
+
+const newCorrect=
+shuffledOptions.findIndex(
+option=>option.correct
+);
+
+
+return{
+
+id:index,
+
+english:raw[0],
+
+hindi:raw[1],
+
+options:
+shuffledOptions.map(
+option=>option.text
+),
+
+correct:newCorrect,
+
+chapter:raw[4],
+
+explanation:raw[5]
+
+};
+
+}
+
+
+/* =========================================================
+   BUILD QUESTION LIST
+   ========================================================= */
+
+function buildList(mode){
+
+let list=
+qs.map(
+(raw,index)=>
+makeQuestion(raw,index)
+);
+
+
+/* Chapter quiz */
+
+if(mode!=="all"){
+
+list=
+list.filter(
+q=>q.chapter===mode
+);
+
+}
+
+
+/* Shuffle QUESTIONS too */
+
+list=
+shuffle(list);
+
+
+/* Maximum 10 questions */
+
+return list.slice(
+0,
+Math.min(10,list.length)
+);
+
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+function showHome(){
+
+clearInterval(session.timer);
+
+hideAll();
+
+el("home").classList.remove("hidden");
+
 updateHome();
+
+scrollTo(0,0);
+
+}
+
+
+function updateHome(){
+
+const level=
+Math.floor(state.xp/1000)+1;
+
+const currentXP=
+state.xp%1000;
+
+el("level").textContent=
+"Level "+level;
+
+el("xpText").textContent=
+currentXP+" / 1000";
+
+el("xpFill").style.width=
+(currentXP/10)+"%";
+
+save();
+
+}
+
+
+/* =========================================================
+   CHAPTERS
+   ========================================================= */
+
+function showChapters(){
+
+hideAll();
+
+el("chapters").classList.remove("hidden");
+
+el("chapterList").innerHTML=
+chapters.map(
+c=>`
+
+<button
+class="chapter"
+onclick="startQuiz(${c.id})"
+>
+
+<div class="num">
+${String(c.id).padStart(2,"0")}
+</div>
+
+<div>
+
+<h3>
+${c.name}
+</h3>
+
+<p>
+${c.topics}
+</p>
+
+</div>
+
+<span class="arrow">
+›
+</span>
+
+</button>
+
+`
+).join("");
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   START QUIZ
+   ========================================================= */
+
+function startQuiz(mode){
+
+const list=
+buildList(mode);
+
+if(!list.length){
+
+alert(
+"No questions available for this chapter."
+);
+
+return;
+
+}
+
+
+session={
+list:list,
+i:0,
+score:0,
+xp:0,
+lives:3,
+streak:0,
+timer:null,
+answered:false
+};
+
+
+hideAll();
+
+el("quiz").classList.remove("hidden");
+
+
+if(mode==="all"){
+
+el("quizTitle").textContent=
+"COMPLETE CCC COURSE";
+
+}else{
+
+const chapter=
+chapters.find(
+c=>c.id===mode
+);
+
+el("quizTitle").textContent=
+chapter.name.toUpperCase();
+
+}
+
+
+el("qt").textContent=
+session.list.length;
+
+
+loadQ();
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   MOCK EXAM
+   ========================================================= */
+
+function startMock(){
+
+let list=
+qs.map(
+(raw,index)=>
+makeQuestion(raw,index)
+);
+
+
+/*
+   Mock exam also gets completely
+   randomized questions and options.
+*/
+
+list=
+shuffle(list).slice(0,20);
+
+
+session={
+list:list,
+i:0,
+score:0,
+xp:0,
+lives:3,
+streak:0,
+timer:null,
+answered:false
+};
+
+
+hideAll();
+
+el("quiz").classList.remove("hidden");
+
+el("quizTitle").textContent=
+"MOCK EXAM";
+
+el("qt").textContent=
+session.list.length;
+
+loadQ();
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   DAILY CHALLENGE
+   ========================================================= */
+
+function startDaily(){
+
+let list=
+qs.map(
+(raw,index)=>
+makeQuestion(raw,index)
+);
+
+list=
+shuffle(list).slice(0,10);
+
+
+session={
+list:list,
+i:0,
+score:0,
+xp:0,
+lives:3,
+streak:0,
+timer:null,
+answered:false
+};
+
+
+hideAll();
+
+el("quiz").classList.remove("hidden");
+
+el("quizTitle").textContent=
+"DAILY CHALLENGE";
+
+el("qt").textContent=
+session.list.length;
+
+loadQ();
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   LOAD QUESTION
+   ========================================================= */
+
+function loadQ(){
+
+clearInterval(session.timer);
+
+session.answered=false;
+
+const q=
+session.list[session.i];
+
+
+el("qn").textContent=
+session.i+1;
+
+el("qFill").style.width=
+(
+(session.i+1)/
+session.list.length*
+100
+)+"%";
+
+
+el("qEnglish").textContent=
+q.english;
+
+el("qHindi").textContent=
+q.hindi;
+
+el("lives").textContent=
+session.lives;
+
+el("streak").textContent=
+session.streak;
+
+el("quizXp").textContent=
+session.xp;
+
+
+el("answer").classList.add("hidden");
+
+el("next").classList.add("hidden");
+
+el("next").textContent=
+"Next Question →";
+
+
+/*
+   Options are ALREADY randomized
+   inside makeQuestion().
+*/
+
+el("options").innerHTML=
+q.options.map(
+(o,i)=>`
+
+<button
+class="option"
+onclick="answer(${i})"
+>
+
+<span class="letter">
+${String.fromCharCode(65+i)}
+</span>
+
+<span>
+${o}
+</span>
+
+</button>
+
+`
+).join("");
+
+
+startTimer();
+
+}
+
+
+/* =========================================================
+   TIMER
+   ========================================================= */
+
+function startTimer(){
+
+let t=30;
+
+el("timer").textContent=t;
+
+session.timer=
+setInterval(
+()=>{
+
+t--;
+
+el("timer").textContent=t;
+
+
+if(t<=0){
+
+clearInterval(session.timer);
+
+if(!session.answered){
+
+answer(
+-1,
+true
+);
+
+}
+
+}
+
+},
+1000
+);
+
+}
+
+
+/* =========================================================
+   ANSWER
+   ========================================================= */
+
+function answer(index,timed=false){
+
+if(session.answered){
+
+return;
+
+}
+
+session.answered=true;
+
+clearInterval(session.timer);
+
+
+const q=
+session.list[session.i];
+
+const buttons=
+[
+...document.querySelectorAll(".option")
+];
+
+
+buttons.forEach(
+b=>b.disabled=true
+);
+
+
+/* ===== CORRECT ===== */
+
+if(index===q.correct){
+
+if(buttons[index]){
+
+buttons[index]
+.classList.add("correct");
+
+}
+
+session.score++;
+
+session.streak++;
+
+session.xp+=100;
+
+state.xp+=100;
+
+state.correct++;
+
+state.attempted++;
+
+
+if(
+session.streak>
+state.bestStreak
+){
+
+state.bestStreak=
+session.streak;
+
+}
+
+
+el("answerStatus").textContent=
+"✅ Correct Answer!";
+
+el("answerStatus").style.color=
+"var(--green)";
+
+el("explanation").textContent=
+q.explanation;
+
+}
+
+
+/* ===== WRONG ===== */
+
+else{
+
+if(
+index>=0 &&
+buttons[index]
+){
+
+buttons[index]
+.classList.add("wrong");
+
+}
+
+
+if(buttons[q.correct]){
+
+buttons[q.correct]
+.classList.add("correct");
+
+}
+
+
+session.lives--;
+
+session.streak=0;
+
+state.wrong++;
+
+state.attempted++;
+
+
+/*
+   Save wrong question.
+
+   Duplicate entries avoid karne ke liye
+   same question ko baar-baar add nahi karenge.
+*/
+
+state.wrongQuestions=
+state.wrongQuestions||[];
+
+
+const alreadyExists=
+state.wrongQuestions.some(
+x=>x.id===q.id
+);
+
+
+if(!alreadyExists){
+
+state.wrongQuestions.unshift(q);
+
+}
+
+
+/* Maximum 100 wrong questions */
+
+state.wrongQuestions=
+state.wrongQuestions.slice(0,100);
+
+
+el("answerStatus").textContent=
+timed
+?"⏰ Time's Up!"
+:"❌ Wrong Answer!";
+
+el("answerStatus").style.color=
+"var(--red)";
+
+
+el("explanation").textContent=
+q.explanation+
+" Correct answer: "+
+q.options[q.correct]+
+".";
+
+}
+
+
+/* ===== UPDATE UI ===== */
+
+save();
+
+el("lives").textContent=
+session.lives;
+
+el("streak").textContent=
+session.streak;
+
+el("quizXp").textContent=
+session.xp;
+
+el("answer").classList.remove("hidden");
+
+el("next").classList.remove("hidden");
+
+
+if(
+session.i===
+session.list.length-1 ||
+session.lives<=0
+){
+
+el("next").textContent=
+"View Result →";
+
+}
+
+}
+
+
+/* =========================================================
+   NEXT QUESTION
+   ========================================================= */
+
+function nextQuestion(){
+
+if(
+session.i>=
+session.list.length-1 ||
+session.lives<=0
+){
+
+result();
+
+return;
+
+}
+
+
+session.i++;
+
+loadQ();
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   RESULT
+   ========================================================= */
+
+function result(){
+
+clearInterval(session.timer);
+
+const percentage=
+Math.round(
+session.score/
+session.list.length*
+100
+);
+
+
+el("quiz").innerHTML=`
+
+<div
+class="card result"
+style="margin-top:50px"
+>
+
+<div class="label">
+QUIZ COMPLETE
+</div>
+
+<h2>
+🎉 Great Job!
+</h2>
+
+<div class="big">
+${percentage}%
+</div>
+
+<p style="color:var(--muted)">
+${session.score} /
+${session.list.length}
+correct
+</p>
+
+<p style="color:var(--gold)">
+⭐ ${session.xp} XP earned
+</p>
+
+<div
+class="statbox"
+style="margin-top:20px"
+>
+
+<div class="smallcard">
+❤️ Lives
+<br>
+<b>${session.lives}</b>
+</div>
+
+<div class="smallcard">
+🔥 Streak
+<br>
+<b>${session.streak}</b>
+</div>
+
+</div>
+
+<button
+class="next"
+onclick="restoreQuiz()"
+>
+Back to Home
+</button>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================================================
+   RESTORE / QUIT
+   ========================================================= */
+
+function restoreQuiz(){
+
+location.reload();
+
+}
+
+
+function quitQuiz(){
+
+if(
+confirm("Quit this quiz?")
+){
+
+location.reload();
+
+}
+
+}
+
+
+/* =========================================================
+   PROGRESS
+   ========================================================= */
+
+function showProgress(){
+
+hideAll();
+
+el("progress")
+.classList.remove("hidden");
+
+
+const level=
+Math.floor(state.xp/1000)+1;
+
+
+el("pXp").textContent=
+state.xp;
+
+el("pLevel").textContent=
+level;
+
+el("pAttempted").textContent=
+state.attempted;
+
+el("pCorrect").textContent=
+state.correct;
+
+el("pWrong").textContent=
+state.wrong;
+
+el("pStreak").textContent=
+state.bestStreak;
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   ACHIEVEMENTS
+   ========================================================= */
+
+function showAchievements(){
+
+hideAll();
+
+el("achievements")
+.classList.remove("hidden");
+
+
+const achievements=[
+
+[
+"🌱",
+"First Step",
+state.attempted>=1,
+"Answer your first question"
+],
+
+[
+"🎯",
+"10 Correct",
+state.correct>=10,
+"Get 10 correct answers"
+],
+
+[
+"🔥",
+"Streak Master",
+state.bestStreak>=5,
+"Reach a 5-question streak"
+],
+
+[
+"⭐",
+"XP Hunter",
+state.xp>=1000,
+"Earn 1000 XP"
+],
+
+[
+"🏆",
+"CCC Champion",
+state.correct>=50,
+"Get 50 correct answers"
+]
+
+];
+
+
+el("achievementList").innerHTML=
+achievements.map(
+a=>`
+
+<div
+class="achievement
+${a[2]?"":"locked"}"
+>
+
+<div class="badge">
+${a[0]}
+</div>
+
+<div>
+
+<b>
+${a[1]}
+</b>
+
+<div
+style="
+color:var(--muted);
+font-size:13px;
+margin-top:4px
+"
+>
+${a[3]}
+</div>
+
+</div>
+
+<div style="margin-left:auto">
+${a[2]?"✓":"🔒"}
+</div>
+
+</div>
+
+`
+).join("");
+
+
+scrollTo(0,0);
+
+}
+
+
+/* =========================================================
+   WRONG QUESTIONS
+   ========================================================= */
+
+function showWrong(){
+
+hideAll();
+
+el("wrong")
+.classList.remove("hidden");
+
+renderWrong();
+
+scrollTo(0,0);
+
+}
+
+
+function renderWrong(){
+
+let questions=
+state.wrongQuestions||[];
+
+const search=
+(
+el("wrongSearch").value||
+""
+).toLowerCase();
+
+
+questions=
+questions.filter(
+q=>
+q.english
+.toLowerCase()
+.includes(search)
+||
+q.hindi
+.includes(search)
+);
+
+
+if(!questions.length){
+
+el("wrongList").innerHTML=
+
+state.wrongQuestions?.length
+
+?
+
+`
+<div
+class="card"
+style="
+text-align:center;
+color:var(--muted)
+"
+>
+No matching questions.
+</div>
+`
+
+:
+
+`
+<div
+class="card"
+style="
+text-align:center;
+color:var(--muted)
+"
+>
+No wrong questions yet.
+Great job! 🎉
+</div>
+`;
+
+return;
+
+}
+
+
+el("wrongList").innerHTML=
+questions.map(
+(q,i)=>`
+
+<div
+class="smallcard"
+style="margin:10px 0"
+>
+
+<b>
+Q${i+1}. ${q.english}
+</b>
+
+<div
+style="
+color:#c7cbd7;
+margin:8px 0
+"
+>
+${q.hindi}
+</div>
+
+<div
+style="
+color:var(--green);
+font-size:13px
+"
+>
+Correct:
+${q.options[q.correct]}
+</div>
+
+</div>
+
+`
+).join("");
+
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+function showSettings(){
+
+alert(
+"CCC QUEST\n\n"+
+"Your progress is saved automatically on this device.\n\n"+
+"Questions and answer options are randomized every time you start a quiz."
+);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+   ========================================================= */
+
+updateHome();
+
+save();
+
 </script>
+
 </body>
 </html>
