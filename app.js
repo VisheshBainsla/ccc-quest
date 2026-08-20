@@ -3,9 +3,12 @@
 // ==========================================
 
 
-// ---------- Demo Question Bank ----------
+// ==========================================
+// QUESTION BANK
+// ==========================================
 
 const questionBank = [
+
     {
         english: "What is Computer?",
         hindi: "कंप्यूटर क्या है?",
@@ -75,22 +78,36 @@ const questionBank = [
         explanation:
             "A keyboard is an input device commonly used to enter text."
     }
+
 ];
 
 
-// ---------- Quiz State ----------
+// ==========================================
+// QUIZ STATE
+// ==========================================
 
 let currentQuestion = 0;
+
 let quizScore = 0;
+
 let quizXP = 0;
+
 let lives = 3;
+
 let streak = 0;
+
 let questionAnswered = false;
+
 let timerValue = 30;
+
 let timerInterval = null;
 
+let quizFinished = false;
 
-// ---------- Player Data ----------
+
+// ==========================================
+// PLAYER DATA
+// ==========================================
 
 let playerData;
 
@@ -99,30 +116,44 @@ try {
     playerData =
         JSON.parse(
             localStorage.getItem("cccQuestPlayer")
-        ) || {
-            xp: 0,
-            level: 1,
-            questionsAttempted: 0,
-            correctAnswers: 0,
-            wrongAnswers: 0,
-            bestStreak: 0
-        };
+        ) || {};
 
 } catch (error) {
 
-    playerData = {
-        xp: 0,
-        level: 1,
-        questionsAttempted: 0,
-        correctAnswers: 0,
-        wrongAnswers: 0,
-        bestStreak: 0
-    };
+    playerData = {};
 
 }
 
 
-// ---------- Elements ----------
+// Make sure all required data exists
+
+playerData.xp =
+    Number(playerData.xp) || 0;
+
+playerData.level =
+    Number(playerData.level) || 1;
+
+playerData.questionsAttempted =
+    Number(playerData.questionsAttempted) || 0;
+
+playerData.correctAnswers =
+    Number(playerData.correctAnswers) || 0;
+
+playerData.wrongAnswers =
+    Number(playerData.wrongAnswers) || 0;
+
+playerData.bestStreak =
+    Number(playerData.bestStreak) || 0;
+
+playerData.wrongQuestions =
+    Array.isArray(playerData.wrongQuestions)
+        ? playerData.wrongQuestions
+        : [];
+
+
+// ==========================================
+// ELEMENTS
+// ==========================================
 
 const homeScreen =
     document.getElementById("homeScreen");
@@ -141,9 +172,6 @@ const chaptersButton =
 
 const backToHomeButton =
     document.getElementById("backToHomeButton");
-
-const chapterCards =
-    document.querySelectorAll(".chapter-card");
 
 const quitQuizButton =
     document.getElementById("quitQuizButton");
@@ -191,7 +219,9 @@ const nextQuestionButton =
     document.getElementById("nextQuestionButton");
 
 
-// ---------- Save Data ----------
+// ==========================================
+// SAVE PLAYER DATA
+// ==========================================
 
 function savePlayerData() {
 
@@ -203,7 +233,9 @@ function savePlayerData() {
 }
 
 
-// ---------- Update Home UI ----------
+// ==========================================
+// UPDATE HOME UI
+// ==========================================
 
 function updatePlayerUI() {
 
@@ -214,26 +246,40 @@ function updatePlayerUI() {
         document.getElementById("xpProgress");
 
     const levelElement =
-        document.querySelector(".player-info h2");
+        document.querySelector(
+            ".player-info h2"
+        );
 
-    if (!xpValue || !xpProgress) {
-        return;
-    }
 
     const level =
-        Math.floor(playerData.xp / 1000) + 1;
+        Math.floor(
+            playerData.xp / 1000
+        ) + 1;
+
 
     const currentLevelXP =
         playerData.xp % 1000;
 
+
     playerData.level =
         level;
 
-    xpValue.textContent =
-        `${currentLevelXP} / 1000`;
 
-    xpProgress.style.width =
-        `${currentLevelXP / 10}%`;
+    if (xpValue) {
+
+        xpValue.textContent =
+            `${currentLevelXP} / 1000`;
+
+    }
+
+
+    if (xpProgress) {
+
+        xpProgress.style.width =
+            `${currentLevelXP / 10}%`;
+
+    }
+
 
     if (levelElement) {
 
@@ -242,29 +288,45 @@ function updatePlayerUI() {
 
     }
 
+
+    savePlayerData();
+
 }
 
 
-// ---------- Show Home ----------
+// ==========================================
+// SHOW HOME
+// ==========================================
 
 function showHome() {
 
     clearInterval(timerInterval);
 
-    if (chaptersScreen) {
-        chaptersScreen.style.display =
-            "none";
-    }
+    quizFinished = false;
 
     if (quizScreen) {
+
         quizScreen.style.display =
             "none";
+
     }
 
+
+    if (chaptersScreen) {
+
+        chaptersScreen.style.display =
+            "none";
+
+    }
+
+
     if (homeScreen) {
+
         homeScreen.style.display =
             "block";
+
     }
+
 
     updatePlayerUI();
 
@@ -273,39 +335,71 @@ function showHome() {
 }
 
 
-// ---------- Start Quiz ----------
+// ==========================================
+// START QUIZ
+// ==========================================
 
 function startQuiz() {
 
     clearInterval(timerInterval);
 
     currentQuestion = 0;
+
     quizScore = 0;
+
     quizXP = 0;
+
     lives = 3;
+
     streak = 0;
+
     questionAnswered = false;
 
+    quizFinished = false;
+
+
     if (homeScreen) {
+
         homeScreen.style.display =
             "none";
+
     }
+
 
     if (chaptersScreen) {
+
         chaptersScreen.style.display =
             "none";
+
     }
+
 
     if (quizScreen) {
+
         quizScreen.style.display =
             "block";
+
     }
 
-    totalQuestions.textContent =
-        questionBank.length;
 
-    nextQuestionButton.textContent =
-        "Next Question";
+    if (totalQuestions) {
+
+        totalQuestions.textContent =
+            questionBank.length;
+
+    }
+
+
+    if (nextQuestionButton) {
+
+        nextQuestionButton.textContent =
+            "Next Question";
+
+        nextQuestionButton.style.display =
+            "none";
+
+    }
+
 
     loadQuestion();
 
@@ -314,7 +408,9 @@ function startQuiz() {
 }
 
 
-// ---------- Load Question ----------
+// ==========================================
+// LOAD QUESTION
+// ==========================================
 
 function loadQuestion() {
 
@@ -322,26 +418,75 @@ function loadQuestion() {
 
     questionAnswered = false;
 
+
     const question =
         questionBank[currentQuestion];
 
-    questionEnglish.textContent =
-        question.english;
 
-    questionHindi.textContent =
-        question.hindi;
+    if (!question) {
 
-    questionNumber.textContent =
-        currentQuestion + 1;
+        showQuizResult();
 
-    quizXPElement.textContent =
-        quizXP;
+        return;
 
-    livesElement.textContent =
-        lives;
+    }
 
-    streakElement.textContent =
-        streak;
+
+    if (questionEnglish) {
+
+        questionEnglish.textContent =
+            question.english;
+
+    }
+
+
+    if (questionHindi) {
+
+        questionHindi.textContent =
+            question.hindi;
+
+    }
+
+
+    if (questionNumber) {
+
+        questionNumber.textContent =
+            currentQuestion + 1;
+
+    }
+
+
+    if (totalQuestions) {
+
+        totalQuestions.textContent =
+            questionBank.length;
+
+    }
+
+
+    if (quizXPElement) {
+
+        quizXPElement.textContent =
+            quizXP;
+
+    }
+
+
+    if (livesElement) {
+
+        livesElement.textContent =
+            lives;
+
+    }
+
+
+    if (streakElement) {
+
+        streakElement.textContent =
+            streak;
+
+    }
+
 
     const progress =
         (
@@ -349,15 +494,39 @@ function loadQuestion() {
             questionBank.length
         ) * 100;
 
-    quizProgress.style.width =
-        `${progress}%`;
+
+    if (quizProgress) {
+
+        quizProgress.style.width =
+            `${progress}%`;
+
+    }
 
 
-    answerCard.style.display =
-        "none";
+    if (answerCard) {
 
-    nextQuestionButton.style.display =
-        "none";
+        answerCard.style.display =
+            "none";
+
+    }
+
+
+    if (nextQuestionButton) {
+
+        nextQuestionButton.style.display =
+            "none";
+
+        nextQuestionButton.textContent =
+            "Next Question";
+
+    }
+
+
+    if (!optionsContainer) {
+
+        return;
+
+    }
 
 
     optionsContainer.innerHTML =
@@ -365,23 +534,30 @@ function loadQuestion() {
 
 
     question.options.forEach(
-        (option, index) => {
+        function (option, index) {
 
             const button =
-                document.createElement("button");
+                document.createElement(
+                    "button"
+                );
+
 
             button.className =
                 "option-button";
 
+
             button.dataset.option =
                 index;
+
 
             const letter =
                 String.fromCharCode(
                     65 + index
                 );
 
+
             button.innerHTML = `
+
                 <span class="option-letter">
                     ${letter}
                 </span>
@@ -389,7 +565,9 @@ function loadQuestion() {
                 <span class="option-text">
                     ${option}
                 </span>
+
             `;
+
 
             button.addEventListener(
                 "click",
@@ -399,6 +577,7 @@ function loadQuestion() {
 
                 }
             );
+
 
             optionsContainer.appendChild(
                 button
@@ -413,7 +592,9 @@ function loadQuestion() {
 }
 
 
-// ---------- Timer ----------
+// ==========================================
+// TIMER
+// ==========================================
 
 function startTimer() {
 
@@ -421,17 +602,40 @@ function startTimer() {
 
     timerValue = 30;
 
-    timerElement.textContent =
-        timerValue;
+
+    if (timerElement) {
+
+        timerElement.textContent =
+            timerValue;
+
+    }
+
 
     timerInterval =
         setInterval(
             function () {
 
+                if (questionAnswered) {
+
+                    clearInterval(
+                        timerInterval
+                    );
+
+                    return;
+
+                }
+
+
                 timerValue--;
 
-                timerElement.textContent =
-                    timerValue;
+
+                if (timerElement) {
+
+                    timerElement.textContent =
+                        timerValue;
+
+                }
+
 
                 if (timerValue <= 0) {
 
@@ -439,10 +643,13 @@ function startTimer() {
                         timerInterval
                     );
 
+
                     if (!questionAnswered) {
 
                         questionAnswered =
                             true;
+
+                        disableOptions();
 
                         handleWrongAnswer(
                             -1,
@@ -460,27 +667,17 @@ function startTimer() {
 }
 
 
-// ---------- Select Answer ----------
+// ==========================================
+// DISABLE OPTIONS
+// ==========================================
 
-function selectAnswer(
-    selectedIndex
-) {
-
-    if (questionAnswered) {
-        return;
-    }
-
-    questionAnswered = true;
-
-    clearInterval(timerInterval);
-
-    const question =
-        questionBank[currentQuestion];
+function disableOptions() {
 
     const buttons =
         document.querySelectorAll(
             ".option-button"
         );
+
 
     buttons.forEach(
         function (button) {
@@ -490,6 +687,39 @@ function selectAnswer(
 
         }
     );
+
+}
+
+
+// ==========================================
+// SELECT ANSWER
+// ==========================================
+
+function selectAnswer(
+    selectedIndex
+) {
+
+    if (questionAnswered) {
+
+        return;
+
+    }
+
+
+    questionAnswered =
+        true;
+
+
+    clearInterval(
+        timerInterval
+    );
+
+
+    const question =
+        questionBank[currentQuestion];
+
+
+    disableOptions();
 
 
     if (
@@ -513,7 +743,9 @@ function selectAnswer(
 }
 
 
-// ---------- Correct Answer ----------
+// ==========================================
+// CORRECT ANSWER
+// ==========================================
 
 function handleCorrectAnswer(
     selectedIndex
@@ -522,38 +754,48 @@ function handleCorrectAnswer(
     const question =
         questionBank[currentQuestion];
 
+
     const buttons =
         document.querySelectorAll(
             ".option-button"
         );
 
+
     if (buttons[selectedIndex]) {
 
         buttons[selectedIndex]
-            .classList.add("correct");
+            .classList.add(
+                "correct"
+            );
 
     }
+
 
     quizScore++;
 
     streak++;
 
+
     const earnedXP =
         100;
+
 
     quizXP +=
         earnedXP;
 
+
     playerData.xp +=
         earnedXP;
+
 
     playerData.questionsAttempted++;
 
     playerData.correctAnswers++;
 
+
     if (
         streak >
-        (playerData.bestStreak || 0)
+        playerData.bestStreak
     ) {
 
         playerData.bestStreak =
@@ -561,33 +803,66 @@ function handleCorrectAnswer(
 
     }
 
+
     savePlayerData();
 
-    answerStatus.textContent =
-        "✅ Correct Answer!";
 
-    answerStatus.style.color =
-        "var(--green)";
+    if (answerStatus) {
 
-    answerExplanation.textContent =
-        question.explanation;
+        answerStatus.textContent =
+            "✅ Correct Answer!";
 
-    answerCard.style.display =
-        "block";
+        answerStatus.style.color =
+            "var(--green)";
 
-    nextQuestionButton.style.display =
-        "block";
+    }
 
-    quizXPElement.textContent =
-        quizXP;
 
-    streakElement.textContent =
-        streak;
+    if (answerExplanation) {
+
+        answerExplanation.textContent =
+            question.explanation;
+
+    }
+
+
+    if (answerCard) {
+
+        answerCard.style.display =
+            "block";
+
+    }
+
+
+    if (nextQuestionButton) {
+
+        nextQuestionButton.style.display =
+            "block";
+
+    }
+
+
+    if (quizXPElement) {
+
+        quizXPElement.textContent =
+            quizXP;
+
+    }
+
+
+    if (streakElement) {
+
+        streakElement.textContent =
+            streak;
+
+    }
 
 }
 
 
-// ---------- Wrong Answer ----------
+// ==========================================
+// WRONG ANSWER
+// ==========================================
 
 function handleWrongAnswer(
     selectedIndex,
@@ -596,6 +871,7 @@ function handleWrongAnswer(
 
     const question =
         questionBank[currentQuestion];
+
 
     const buttons =
         document.querySelectorAll(
@@ -609,7 +885,9 @@ function handleWrongAnswer(
     ) {
 
         buttons[selectedIndex]
-            .classList.add("wrong");
+            .classList.add(
+                "wrong"
+            );
 
     }
 
@@ -617,7 +895,9 @@ function handleWrongAnswer(
     if (buttons[question.correct]) {
 
         buttons[question.correct]
-            .classList.add("correct");
+            .classList.add(
+                "correct"
+            );
 
     }
 
@@ -626,98 +906,167 @@ function handleWrongAnswer(
 
     streak = 0;
 
+
     playerData.questionsAttempted++;
 
     playerData.wrongAnswers++;
 
+
+    // Save wrong question
+
+    if (
+        !playerData.wrongQuestions.includes(
+            currentQuestion
+        )
+    ) {
+
+        playerData.wrongQuestions.push(
+            currentQuestion
+        );
+
+    }
+
+
     savePlayerData();
 
 
-    livesElement.textContent =
-        lives;
+    if (livesElement) {
 
-    streakElement.textContent =
-        streak;
+        livesElement.textContent =
+            lives;
+
+    }
+
+
+    if (streakElement) {
+
+        streakElement.textContent =
+            streak;
+
+    }
 
 
     if (timedOut) {
 
-        answerStatus.textContent =
-            "⏰ Time's Up!";
+        if (answerStatus) {
+
+            answerStatus.textContent =
+                "⏰ Time's Up!";
+
+        }
 
     } else {
 
-        answerStatus.textContent =
-            "❌ Wrong Answer!";
+        if (answerStatus) {
+
+            answerStatus.textContent =
+                "❌ Wrong Answer!";
+
+        }
 
     }
 
-    answerStatus.style.color =
-        "var(--red)";
+
+    if (answerStatus) {
+
+        answerStatus.style.color =
+            "var(--red)";
+
+    }
 
 
-    answerExplanation.textContent =
-        `${question.explanation} ` +
-        `Correct answer: ` +
-        `${question.options[question.correct]}.`;
+    if (answerExplanation) {
+
+        answerExplanation.textContent =
+            `${question.explanation} ` +
+            `Correct answer: ` +
+            `${question.options[question.correct]}.`;
+
+    }
 
 
-    answerCard.style.display =
-        "block";
+    if (answerCard) {
 
-    nextQuestionButton.style.display =
-        "block";
+        answerCard.style.display =
+            "block";
+
+    }
+
+
+    if (nextQuestionButton) {
+
+        nextQuestionButton.style.display =
+            "block";
+
+    }
 
 
     if (lives <= 0) {
 
-        nextQuestionButton.textContent =
-            "View Result →";
+        if (nextQuestionButton) {
+
+            nextQuestionButton.textContent =
+                "View Result →";
+
+        }
 
     }
 
 }
 
 
-// ---------- Next Question ----------
+// ==========================================
+// NEXT QUESTION
+// ==========================================
 
-nextQuestionButton.addEventListener(
-    "click",
-    function () {
+function nextQuestion() {
 
-        if (lives <= 0) {
+    if (quizFinished) {
 
-            showQuizResult();
-
-            return;
-
-        }
-
-        currentQuestion++;
-
-
-        if (
-            currentQuestion >=
-            questionBank.length
-        ) {
-
-            showQuizResult();
-
-            return;
-
-        }
-
-        loadQuestion();
+        return;
 
     }
-);
 
 
-// ---------- Quiz Result ----------
+    if (lives <= 0) {
+
+        showQuizResult();
+
+        return;
+
+    }
+
+
+    currentQuestion++;
+
+
+    if (
+        currentQuestion >=
+        questionBank.length
+    ) {
+
+        showQuizResult();
+
+        return;
+
+    }
+
+
+    loadQuestion();
+
+}
+
+
+// ==========================================
+// QUIZ RESULT
+// ==========================================
 
 function showQuizResult() {
 
     clearInterval(timerInterval);
+
+    quizFinished = true;
+
 
     const percentage =
         Math.round(
@@ -728,154 +1077,205 @@ function showQuizResult() {
         );
 
 
-    // Keep the original quiz HTML intact.
-    // This prevents the quiz from breaking
-    // when the user starts another quiz.
+    if (answerStatus) {
 
-    answerStatus.textContent =
-        "🎉 Quiz Complete!";
+        answerStatus.textContent =
+            "🎉 Quiz Complete!";
 
-    answerStatus.style.color =
-        "var(--green)";
+        answerStatus.style.color =
+            "var(--green)";
 
-    answerExplanation.textContent =
-        `You scored ${quizScore} out of ` +
-        `${questionBank.length} ` +
-        `(${percentage}%). ` +
-        `You earned ${quizXP} XP.`;
+    }
 
 
-    answerCard.style.display =
-        "block";
+    if (answerExplanation) {
 
-    nextQuestionButton.textContent =
-        "Back to Home";
+        answerExplanation.textContent =
+            `You scored ${quizScore} out of ` +
+            `${questionBank.length} ` +
+            `(${percentage}%). ` +
+            `You earned ${quizXP} XP.`;
 
-    nextQuestionButton.style.display =
-        "block";
-
-
-    // Disable all options
-
-    const buttons =
-        document.querySelectorAll(
-            ".option-button"
-        );
-
-    buttons.forEach(
-        function (button) {
-
-            button.disabled =
-                true;
-
-        }
-    );
+    }
 
 
-    // Special next button behavior
+    if (answerCard) {
 
-    nextQuestionButton.onclick =
-        function () {
+        answerCard.style.display =
+            "block";
 
-            nextQuestionButton.onclick =
-                null;
+    }
 
-            nextQuestionButton.textContent =
-                "Next Question";
 
-            showHome();
+    disableOptions();
 
-        };
+
+    if (nextQuestionButton) {
+
+        nextQuestionButton.textContent =
+            "Back to Home";
+
+        nextQuestionButton.style.display =
+            "block";
+
+    }
 
 }
 
 
-// ---------- Quit Quiz ----------
+// ==========================================
+// NEXT BUTTON
+// ==========================================
 
-quitQuizButton.addEventListener(
-    "click",
-    function () {
+if (nextQuestionButton) {
 
-        const shouldQuit =
-            confirm(
-                "Quit this quiz?"
-            );
+    nextQuestionButton.addEventListener(
+        "click",
+        function () {
 
-        if (shouldQuit) {
+            if (quizFinished) {
 
-            showHome();
+                showHome();
+
+                return;
+
+            }
+
+
+            nextQuestion();
 
         }
+    );
 
-    }
-);
-
-
-// ---------- Play Quiz ----------
-
-playQuizButton.addEventListener(
-    "click",
-    startQuiz
-);
+}
 
 
-// ---------- Chapters ----------
+// ==========================================
+// QUIT QUIZ
+// ==========================================
 
-chaptersButton.addEventListener(
-    "click",
-    function () {
+if (quitQuizButton) {
 
-        homeScreen.style.display =
-            "none";
+    quitQuizButton.addEventListener(
+        "click",
+        function () {
 
-        quizScreen.style.display =
-            "none";
-
-        chaptersScreen.style.display =
-            "block";
-
-        window.scrollTo(0, 0);
-
-    }
-);
+            const shouldQuit =
+                confirm(
+                    "Quit this quiz?"
+                );
 
 
-// ---------- Back to Home ----------
+            if (shouldQuit) {
 
-backToHomeButton.addEventListener(
-    "click",
-    showHome
-);
+                showHome();
+
+            }
+
+        }
+    );
+
+}
 
 
-// ---------- Chapter Cards ----------
+// ==========================================
+// PLAY QUIZ
+// ==========================================
 
-chapterCards.forEach(
-    function (card) {
+if (playQuizButton) {
 
-        card.addEventListener(
-            "click",
-            function () {
+    playQuizButton.addEventListener(
+        "click",
+        startQuiz
+    );
 
-                const chapter =
-                    card.dataset.chapter;
+}
+
+
+// ==========================================
+// CHAPTERS
+// ==========================================
+
+if (chaptersButton) {
+
+    chaptersButton.addEventListener(
+        "click",
+        function () {
+
+            /*
+             * The current index.html does not yet
+             * contain a Chapters Screen.
+             *
+             * Therefore we safely show a message
+             * instead of causing a JavaScript error.
+             */
+
+            if (
+                chaptersScreen
+            ) {
+
+                if (homeScreen) {
+
+                    homeScreen.style.display =
+                        "none";
+
+                }
+
+
+                if (quizScreen) {
+
+                    quizScreen.style.display =
+                        "none";
+
+                }
+
+
+                chaptersScreen.style.display =
+                    "block";
+
+                window.scrollTo(0, 0);
+
+            } else {
 
                 alert(
-                    `Chapter ${chapter} quiz will be connected next! 📚`
+                    "Chapter system is ready to be added next! 📚"
                 );
 
             }
-        );
 
-    }
-);
+        }
+    );
+
+}
 
 
-// ---------- Mock Exam ----------
+// ==========================================
+// BACK TO HOME
+// ==========================================
 
-document
-    .getElementById("mockExamButton")
-    .addEventListener(
+if (backToHomeButton) {
+
+    backToHomeButton.addEventListener(
+        "click",
+        showHome
+    );
+
+}
+
+
+// ==========================================
+// MOCK EXAM
+// ==========================================
+
+const mockExamButton =
+    document.getElementById(
+        "mockExamButton"
+    );
+
+
+if (mockExamButton) {
+
+    mockExamButton.addEventListener(
         "click",
         function () {
 
@@ -886,92 +1286,261 @@ document
         }
     );
 
+}
 
-// ---------- Progress ----------
 
-document
-    .getElementById("progressButton")
-    .addEventListener(
+// ==========================================
+// PROGRESS
+// ==========================================
+
+const progressButton =
+    document.getElementById(
+        "progressButton"
+    );
+
+
+if (progressButton) {
+
+    progressButton.addEventListener(
         "click",
         function () {
 
+            const accuracy =
+                playerData.questionsAttempted > 0
+                    ? Math.round(
+                        (
+                            playerData.correctAnswers /
+                            playerData.questionsAttempted
+                        ) * 100
+                    )
+                    : 0;
+
+
             alert(
+                `📊 MY PROGRESS\n\n` +
                 `XP: ${playerData.xp}\n` +
-                `Level: ${playerData.level}\n` +
+                `Level: ${playerData.level}\n\n` +
                 `Questions: ${playerData.questionsAttempted}\n` +
                 `Correct: ${playerData.correctAnswers}\n` +
                 `Wrong: ${playerData.wrongAnswers}\n` +
+                `Accuracy: ${accuracy}%\n` +
                 `Best Streak: ${playerData.bestStreak}`
             );
 
         }
     );
 
+}
 
-// ---------- Achievements ----------
 
-document
-    .getElementById("achievementsButton")
-    .addEventListener(
+// ==========================================
+// ACHIEVEMENTS
+// ==========================================
+
+const achievementsButton =
+    document.getElementById(
+        "achievementsButton"
+    );
+
+
+if (achievementsButton) {
+
+    achievementsButton.addEventListener(
         "click",
         function () {
 
-            alert(
-                "Achievements will be added next! 🏆"
-            );
+            const achievements = [];
+
+
+            if (
+                playerData.correctAnswers >= 1
+            ) {
+
+                achievements.push(
+                    "🥉 First Correct Answer"
+                );
+
+            }
+
+
+            if (
+                playerData.correctAnswers >= 10
+            ) {
+
+                achievements.push(
+                    "🥈 10 Correct Answers"
+                );
+
+            }
+
+
+            if (
+                playerData.bestStreak >= 5
+            ) {
+
+                achievements.push(
+                    "🔥 5 Question Streak"
+                );
+
+            }
+
+
+            if (
+                playerData.xp >= 1000
+            ) {
+
+                achievements.push(
+                    "⭐ 1000 XP Master"
+                );
+
+            }
+
+
+            if (
+                achievements.length === 0
+            ) {
+
+                alert(
+                    "🏆 ACHIEVEMENTS\n\n" +
+                    "No achievements unlocked yet.\n\n" +
+                    "Keep playing to unlock rewards!"
+                );
+
+            } else {
+
+                alert(
+                    "🏆 ACHIEVEMENTS\n\n" +
+                    achievements.join("\n\n")
+                );
+
+            }
 
         }
     );
 
+}
 
-// ---------- Wrong Questions ----------
 
-document
-    .getElementById("wrongQuestionsButton")
-    .addEventListener(
+// ==========================================
+// WRONG QUESTIONS
+// ==========================================
+
+const wrongQuestionsButton =
+    document.getElementById(
+        "wrongQuestionsButton"
+    );
+
+
+if (wrongQuestionsButton) {
+
+    wrongQuestionsButton.addEventListener(
         "click",
         function () {
 
-            alert(
-                "Wrong Questions review will be added next! ❌"
+            const count =
+                playerData.wrongQuestions.length;
+
+
+            if (count === 0) {
+
+                alert(
+                    "❌ WRONG QUESTIONS\n\n" +
+                    "You don't have any wrong questions yet.\n\n" +
+                    "Keep playing!"
+                );
+
+                return;
+
+            }
+
+
+            let message =
+                "❌ WRONG QUESTIONS\n\n";
+
+
+            playerData.wrongQuestions.forEach(
+                function (index, position) {
+
+                    const question =
+                        questionBank[index];
+
+
+                    if (question) {
+
+                        message +=
+                            `${position + 1}. ` +
+                            `${question.english}\n`;
+
+                    }
+
+                }
             );
+
+
+            alert(message);
 
         }
     );
 
+}
 
-// ---------- Daily Challenge ----------
 
-document
-    .getElementById("dailyChallengeButton")
-    .addEventListener(
+// ==========================================
+// DAILY CHALLENGE
+// ==========================================
+
+const dailyChallengeButton =
+    document.getElementById(
+        "dailyChallengeButton"
+    );
+
+
+if (dailyChallengeButton) {
+
+    dailyChallengeButton.addEventListener(
         "click",
         startQuiz
     );
 
+}
 
-// ---------- Settings ----------
 
-document
-    .getElementById("settingsButton")
-    .addEventListener(
+// ==========================================
+// SETTINGS
+// ==========================================
+
+const settingsButton =
+    document.getElementById(
+        "settingsButton"
+    );
+
+
+if (settingsButton) {
+
+    settingsButton.addEventListener(
         "click",
         function () {
 
             alert(
-                "Settings will be added later. ⚙️"
+                "⚙️ Settings\n\n" +
+                "More settings will be added later."
             );
 
         }
     );
 
+}
 
-// ---------- Initialize ----------
+
+// ==========================================
+// INITIALIZE
+// ==========================================
 
 updatePlayerUI();
 
 savePlayerData();
 
+
 console.log(
-    "CCC QUEST Quiz Engine Loaded Successfully!"
+    "CCC QUEST Quiz Engine Loaded Successfully! 🚀"
 );
