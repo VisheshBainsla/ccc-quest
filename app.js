@@ -111,6 +111,18 @@ const homeScreen =
 const quizScreen =
     document.getElementById("quizScreen");
 
+const chaptersScreen =
+    document.getElementById("chaptersScreen");
+
+const chaptersButton =
+    document.getElementById("chaptersButton");
+
+const backToHomeButton =
+    document.getElementById("backToHomeButton");
+
+const chapterCards =
+    document.querySelectorAll(".chapter-card");
+
 const playQuizButton =
     document.getElementById("playQuizButton");
 
@@ -841,4 +853,69 @@ savePlayerData();
 
 console.log(
     "CCC QUEST Quiz Engine Loaded!"
+);
+
+// ==========================================
+// CHAPTERS SCREEN
+// ==========================================
+
+
+// Open Chapters
+
+chaptersButton.addEventListener(
+    "click",
+    function () {
+
+        homeScreen.style.display = "none";
+
+        quizScreen.style.display = "none";
+
+        chaptersScreen.style.display = "block";
+
+        window.scrollTo(0, 0);
+
+    }
+);
+
+
+// Back to Home
+
+backToHomeButton.addEventListener(
+    "click",
+    function () {
+
+        chaptersScreen.style.display = "none";
+
+        quizScreen.style.display = "none";
+
+        homeScreen.style.display = "block";
+
+        updatePlayerUI();
+
+        window.scrollTo(0, 0);
+
+    }
+);
+
+
+// Chapter Cards
+
+chapterCards.forEach(
+    function (card) {
+
+        card.addEventListener(
+            "click",
+            function () {
+
+                const chapter =
+                    card.dataset.chapter;
+
+                alert(
+                    `Chapter ${chapter} quiz will be connected next! 📚`
+                );
+
+            }
+        );
+
+    }
 );
