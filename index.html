@@ -191,7 +191,6 @@ function randomQuestionList(mode,count){
   if(mode!=="all"){
     pool=pool.filter(q=>q.chapter===mode);
   }
-
   const history=questionHistory[mode]||[];
   let fresh=pool.filter(q=>!history.includes(q.id));
 
