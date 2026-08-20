@@ -188,7 +188,7 @@ function rememberQuestions(mode,list){
 
 function randomQuestionList(mode,count){
   let pool=qs.map((x,i)=>({...toQ(x),id:i}));
-  if(mode!=="all"){
+  if(mode!=="all"&&mode!=="mock"&&mode!=="daily"){
     pool=pool.filter(q=>q.chapter===mode);
   }
   const history=questionHistory[mode]||[];
@@ -208,8 +208,8 @@ function randomQuestionList(mode,count){
 function prepareQuestion(q){
   // Copy the question so we never mutate the original question bank.
   const correctText=q.options[q.correct];
-  const optionObjects=q.options.map((text,i)=>({text,correct:i===q.correct}));
-  shuffle(optionObjects);
+  let optionObjects=q.options.map((text,i)=>({text,correct:i===q.correct}));
+  optionObjects=shuffle(optionObjects);
 
   return {
     ...q,
@@ -361,7 +361,7 @@ function answer(index,timed=false){if(session.answered)return;session.answered=t
 function nextQuestion(){if(session.i>=session.list.length-1||session.lives<=0){result();return}session.i++;loadQ();scrollTo(0,0)}
 function result(){clearInterval(session.timer);let pct=Math.round(session.score/session.list.length*100);el("quiz").innerHTML=`<div class="card result" style="margin-top:50px"><div class="label">QUIZ COMPLETE</div><h2>🎉 Great Job!</h2><div class="big">${pct}%</div><p style="color:var(--muted)">${session.score} / ${session.list.length} correct</p><p style="color:var(--gold)">⭐ ${session.xp} XP earned</p><div class="statbox" style="margin-top:20px"><div class="smallcard">❤️ Lives<br><b>${session.lives}</b></div><div class="smallcard">🔥 Streak<br><b>${session.streak}</b></div></div><button class="next" onclick="restoreQuiz()">Back to Home</button></div>`}
 function restoreQuiz(){location.reload()}
-function quitQuiz(){if(confirm("Quit this quiz?"))location.reload()}
+function quitQuiz(){clearInterval(session.timer);showHome()}
 updateHome();
 </script>
 </body>
